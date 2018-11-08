@@ -3,6 +3,7 @@
 
     define("SW_NOMBRE","APPracticar");
     define("SW_VERSION","1.0.0");
+    define("MODO_PRODUCCION",true);
 
 /*
     $htmlMuestra = "";
@@ -60,13 +61,24 @@
        
     </section>
 
-    <!-- Jquery Core Js -->
-    <script src="../../plugins/jquery/jquery.min.js"></script>
-    <!-- Bootstrap Core Js -->
-    <script src="../../plugins/bootstrap/js/bootstrap.js"></script>
-    <!-- Waves Effect Plugin Js -->
-    <script src="../../plugins/node-waves/waves.js"></script>
+    <?php 
 
+    if (MODO_PRODUCCION){
+            echo '<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.1/jquery.min.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/node-waves/0.7.5/waves.min.js"></script>';
+
+        } else {
+            echo '<script src="../../plugins/jquery/jquery.min.js"></script>
+                <!-- Bootstrap Core Js -->
+                <script src="../../plugins/bootstrap/js/bootstrap.js"></script>
+                <!-- Waves Effect Plugin Js -->
+                <script src="../../plugins/node-waves/waves.js"></script>
+            ';
+        }
+     ?>
+    <!-- Jquery Core Js -->
+    
     <script type="text/javascript">
         var _PID = "<?php echo isset($_GET["pid"]) ? $_GET["pid"] : NULL; ?>";
         var _TUSER = "<?php echo isset($_GET["tuser"]) ? $_GET["tuser"] : NULL; ?>";

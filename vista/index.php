@@ -1,3 +1,9 @@
+<?php 
+
+define("MODO_PRODUCCION", true);
+
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -8,22 +14,25 @@
     <!-- Favicon-->
     <link rel="icon" href="../../favicon.ico" type="image/x-icon">
 
-    <!-- Google Fonts -->
-    <!--
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
-    -->
-    <link href="../css/fonts/font-roboto.css" rel="stylesheet" type="text/css">
-    <link href="../css/fonts/font-materialize.css" rel="stylesheet" type="text/css">
-
-    <!-- Bootstrap Core Css -->
-    <link href="../plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
-
-    <!-- Waves Effect Css -->
-    <link href="../plugins/node-waves/waves.css" rel="stylesheet" />
-
-    <!-- Animation Css -->
-    <link href="../plugins/animate-css/animate.css" rel="stylesheet" />
+     <?php 
+        if (MODO_PRODUCCION){
+            echo '<link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+            <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+            <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
+            <link href="https://cdnjs.cloudflare.com/ajax/libs/node-waves/0.7.5/waves.min.css" rel="stylesheet" />
+            <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.0/animate.min.css" rel="stylesheet" />
+            ';
+        } else {
+             echo '<link href="../css/fonts/font-roboto.css" rel="stylesheet" type="text/css">
+            <link href="../css/fonts/font-materialize.css" rel="stylesheet" type="text/css">
+            <!-- Bootstrap Core Css -->
+            <link href="../plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+            <!-- Waves Effect Css -->
+            <link href="../plugins/node-waves/waves.min.css" rel="stylesheet" />
+            <!-- Animation Css -->
+            <link href="../plugins/animate-css/animate.min.css" rel="stylesheet" />';
+        }
+     ?>
 
     <!-- Custom Css -->
     <link href="../css/style.css" rel="stylesheet">
@@ -70,17 +79,29 @@
         </div>
     </div>
 
-    <!-- Jquery Core Js -->
-    <script src="../plugins/jquery/jquery.min.js"></script>
-    <!-- Bootstrap Core Js -->
-    <script src="../plugins/bootstrap/js/bootstrap.js"></script>
-    <!-- Waves Effect Plugin Js -->
-    <script src="../plugins/node-waves/waves.js"></script>
-
-    <!-- Custom Js -->
-    <script src="../js/Ajxur.js"></script>    
-    <script src="../js/admin.js"></script>
-    <script src="../js/util.js"></script>
+    
+    <?php 
+        if (MODO_PRODUCCION){
+            echo '
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.1/jquery.min.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/node-waves/0.7.5/waves.min.js"></script>
+                <script src="../js/full.produccion.login.min.js"></script>
+            ';
+       
+        } else {
+             echo '<!-- Jquery Core Js -->
+                <script src="../plugins/jquery/jquery.min.js"></script>
+                <!-- Bootstrap Core Js -->
+                <script src="../plugins/bootstrap/js/bootstrap.min.js"></script>
+                <!-- Waves Effect Plugin Js -->
+                <script src="../plugins/node-waves/waves.min.js"></script>
+                <!-- Custom Js -->
+                <script src="../js/Ajxur.js"></script>    
+                <script src="../js/admin.js"></script>
+                <script src="../js/util.js"></script>';
+        }
+     ?>
     <script src="_js/login.js"></script>
 </body>
 

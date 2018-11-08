@@ -12,6 +12,8 @@
  define("MODELO_VISTA","../../modelo/Util/Vista.php");
  
  //SESION
+ define("MODO_PRODUCCION", true);
+
  define("_SESION_","_jose_movil_");
  session_name(_SESION_);
  session_start();

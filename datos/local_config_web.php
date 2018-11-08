@@ -11,6 +11,8 @@
  define("MODELO_FUNCIONES",MODELO_UTIL."/Funciones.php");
  
  //SESION
+ define("MODO_PRODUCCION", true);
+
  define("_SESION_","_jose_web_");
  session_name(_SESION_);
  session_start();

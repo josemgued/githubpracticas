@@ -16,7 +16,7 @@
     <?php 
         include $rutaTemplate.'css.php';
     ?>
-    <link href="../../plugins/multi-select/css/multi-select.css" rel="stylesheet">
+    
 </head>
 
 <body class="theme-light-blue">
@@ -84,10 +84,17 @@
 
     <?php 
         include $rutaTemplate.'scripts-js.php';
+        
+        if (MODO_PRODUCCION){
+            echo '<script src="https://cdnjs.cloudflare.com/ajax/libs/multi-select/0.9.12/js/jquery.multi-select.min.js"></script>         
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/jquery.dataTables.min.js"></script>
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/dataTables.bootstrap.min.js"></script>';
+        } else {
+            echo '<script src="../../plugins/multi-select/js/jquery.multi-select.js"></script>
+                    <script src="../../plugins/jquery-datatable/jquery.dataTables.js"></script>
+                    <script src="../../plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>';
+        }
     ?>
-     <script src="../../plugins/multi-select/js/jquery.multi-select.js"></script>
-    <script src="../../plugins/jquery-datatable/jquery.dataTables.js"></script>
-    <script src="../../plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
     
 
 </body>
