@@ -1,7 +1,7 @@
 <?php 
 
 
-/*CONF. NET*/
+/**CONF. NET*/
 define("TIPO_BD","postgres"); //postgres,mysql
 define("SERVIDOR_BD", "ec2-54-225-68-133.compute-1.amazonaws.com");
 define("USUARIO_BD", "upcsapkmmjtcie");
