@@ -1,0 +1,106 @@
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+body {
+  position: relative;
+  width: 21cm;  
+  height: 29.7cm; 
+  margin: 0 auto; 
+  color: #001028;
+  background: #FFFFFF; 
+  font-family: Arial, sans-serif; 
+  font-size: 12px; 
+  font-family: Arial;
+}
+
+a {
+  color: #5D6975;
+  text-decoration: underline;
+}
+
+header {
+  padding: 10px 0;
+  margin-bottom: 10px;
+}
+
+h1 {
+  border-top: 1px solid  #5D6975;
+  border-bottom: 1px solid  #5D6975;
+  color: #5D6975;
+  font-size: 2.4em;
+  line-height: 1.4em;
+  font-weight: normal;
+  text-align: center;
+  margin: 0 0 20px 0;
+}
+
+#fecha{
+  float: right;
+  text-align: right;
+}
+
+#logo{
+  //float: left;
+   top: 0;
+   left: 0;
+   position: absolute;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  margin-bottom: 20px;
+  font-size: 1em;
+}
+
+table tr:nth-child(2n-1) td {
+ // background: #F5F5F5;
+}
+
+table.f-cabecera tr td {
+  padding: 5px 0;
+}
+
+table.f-cabecera tr td.renglon {
+  padding-left: 1cm;
+  padding-right: 1cm;
+  text-align: left;
+}
+
+table th,
+table td {
+  padding: 3.5px;
+  text-align: center;
+}
+
+table th {
+  padding: 5px 20px;
+  color: #5D6975;
+  border-bottom: 1px solid #C1CED9;
+  //white-space: nowrap;        
+  font-weight: normal;
+}
+
+table.f-cabecera {
+	font-size: 1.45em;
+}
+
+table td.subfila{
+	text-align: left;
+    padding: 6.5px;
+    font-weight: bold;
+    font-size: .85em;
+}
+
+
+.celda-subtitulo{
+  font-size: 1.1em;
+  font-weight: bold;
+  text-align: left;
+  padding: .25cm .5cm;
+  background: #F5F5F5;
+}
