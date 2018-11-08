@@ -9,7 +9,7 @@
                 <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.0/animate.min.css" rel="stylesheet" />
                 <link href="../../css/style.css" rel="stylesheet">
                 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-datetimepicker/2.0.0/css/bootstrap-material-datetimepicker.min.css" rel="stylesheet">
-                <link href="../../css/themes/theme-blue.min.css" rel="stylesheet" />
+                <link href="../../css/themes/all-themes.min.css" rel="stylesheet" />
                 <link href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.0.0/sweetalert.min.css" rel="stylesheet">
                 <link href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/css/dataTables.bootstrap.css" rel="stylesheet">
                 <link href="https://cdnjs.cloudflare.com/ajax/libs/multi-select/0.9.12/css/multi-select.min.css" rel="stylesheet">
@@ -35,7 +35,7 @@
             <link href="../../plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" rel="stylesheet">
 
             <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
-            <link href="../../css/themes/theme-blue.min.css" rel="stylesheet" />
+            <link href="../../css/themes/all-themes.css" rel="stylesheet" />
             <link href="../../plugins/sweetalert/sweetalert.css" rel="stylesheet" />
             <link href="../../plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
             <link href="../../plugins/multi-select/css/multi-select.css" rel="stylesheet">
