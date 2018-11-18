@@ -252,9 +252,6 @@ class Persona extends Conexion {
             $doc = $this->esEstudiante() ? "dni" : "ruc";
             $valorDoc = $this->esEstudiante() ? $this->getDni() : $this->getRuc();
 
-
-            var_dump($this);
-
             $sql = "SELECT COUNT(*) > 0 FROM $this->tbl WHERE $doc = :0 AND estado_mrcb = 1";
             $existe = $this->consultarValor($sql, [$valorDoc]);
             if ($existe){
@@ -302,6 +299,8 @@ class Persona extends Conexion {
                 $campos_valores["cargo"] = $this->getCargo();
                 $campos_valores["ruc"] = $this->getRuc();
             }
+
+            var_dump($campos_valores);
             exit;
 
             //$this->insert($this->tbl,$campos_valores);
