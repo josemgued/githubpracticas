@@ -68,6 +68,8 @@ class Mensaje {
     
     public function enviarCorreo($tipo){
 
+        require 'PHPMailer/PHPMailerAutoload.php';
+
         switch($tipo){
             case "PRESELECCIONAR":
             $this->enviarCorreoPreseleccionar();
@@ -130,15 +132,16 @@ class Mensaje {
         }
 
 
-        $HOST = "http://localhost/appJoseServer";
+        //$HOST = "http://localhost/appJoseServer";
+        $HOST = "https://serverpracticas.herokuapp.com";
         $HOST .= "/vista/validacion_cuenta?pid=".md5($persona["correo"])."&tuser=".md5($tipoUsuario);
 
-        $mensaje = 'Estimado(a): <b>'.$persona["nombres_persona"].' '.$mensajeExtra.'</b>';
+        $mensaje = 'Estimado(a): <b>'.$persona["nombres_persona"].' '.$mensajeExtra.'</b><br>';
        
-        $mensaje .= '<br>¡Bienvenido a nuestra app! <br>';
+        $mensaje .= '¡Bienvenido a nuestra app! <br>';
         $mensaje .= 'Para finalizar su registro, debe confirmar su cuenta accediendo al siguiente enlace: <br><br>';
         $mensaje .= '<a href="'.$HOST.'">'.$HOST.'</a> <br><br>';
-        $mensaje .= 'Si no puede abrir el enlace, copie y pegue la dirección web en su navegador de preferencia.<br><br>';
+        $mensaje .= 'Si no puede abrir el enlace, copie y pegue la direccion web en su navegador de preferencia.<br><br>';
 
         $mensaje .= 'Muchas gracias por su tiempo.<br>';
         $this->setMensaje($mensaje);
