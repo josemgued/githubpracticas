@@ -437,10 +437,10 @@ class Funciones {
         $mail->SMTPAuth = true;
 
         //Username to use for SMTP authentication - use full email address for gmail
-        $mail->Username = "CORREO@gmail.com";
+        $mail->Username = "josemgued@gmail.com";
 
         //Password to use for SMTP authentication
-        $mail->Password = "CLAVECORREO";
+        $mail->Password = "josing83";
 
         //Set who the message is to be sent from
         $mail->setFrom($de, 'APPPRACTICAR');
