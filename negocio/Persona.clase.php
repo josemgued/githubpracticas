@@ -304,23 +304,17 @@ class Persona extends Conexion {
 
             //Si todo ok, enviar correo.
             //Persona: Nombres, apellidos (razonsocial), correo, (ruc or cod uni) 
-            $sql = "SELECT 
-                            CONCAT(nombres,' ',apellidos) as nombres_estudiante, correo,
-                            titulo as convocatoria
-                            FROM aviso_laboral_estudiante ale 
-                            INNER JOIN estudiante e ON ale.cod_estudiante = e.cod_estudiante
-                            INNER JOIN aviso_laboral al ON al.cod_aviso_laboral = ale.cod_aviso_laboral
-                            WHERE ale.cod_aviso_laboral = :0 AND ale.cod_estudiante = :1";
 
             $persona = ["nombres_persona"=> $this->getNombres()." ".$this->getApellidos(),
                             "razon_social"=> $this->esEstudiante() ? "" : $this->getRazonSocial() ,
                             "documento"=>  $this->esEstudiante() ? $this->getCodigoUniversitario() : $this->getRuc(),
                             "correo"=>$this->getCorreo()];
-
+                            /*
             require_once 'Mensaje.clase.php';
             $objMensaje = new Mensaje();
             $objMensaje->setPara($persona);     
-            $objMensaje->enviarCorreo("CONFIRMAR_CUENTA"); 
+            $objMensaje->enviarCorreo("CONFIRMAR_CUENTA"); */
+            var_dump($persona);
             return array("rpt"=>true,"msj"=>"Cuenta creada correctamente. Se ha enviado correo de confirmación.");
         } catch (Exception $exc) {
             return array("rpt"=>false,"msj"=>$exc->getMessage());
