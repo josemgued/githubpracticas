@@ -67,7 +67,7 @@ class Mensaje {
 
     
     public function enviarCorreo($tipo){
-
+        var_dump($tipo);
         require 'PHPMailer/PHPMailerAutoload.php';
 
         switch($tipo){
@@ -138,7 +138,7 @@ class Mensaje {
 
         $mensaje = 'Estimado(a): <b>'.$persona["nombres_persona"].' '.$mensajeExtra.'</b><br>';
        
-        $mensaje .= '¡Bienvenido a nuestra app! <br>';
+        $mensaje .= 'Bienvenido a nuestra app! <br>';
         $mensaje .= 'Para finalizar su registro, debe confirmar su cuenta accediendo al siguiente enlace: <br><br>';
         $mensaje .= '<a href="'.$HOST.'">'.$HOST.'</a> <br><br>';
         $mensaje .= 'Si no puede abrir el enlace, copie y pegue la direccion web en su navegador de preferencia.<br><br>';
@@ -146,7 +146,9 @@ class Mensaje {
         $mensaje .= 'Muchas gracias por su tiempo.<br>';
         $this->setMensaje($mensaje);
 
-        Funciones::enviarCorreo($this->asunto,$this->getMensajeArmado(),$this->empresa,trim($persona["correo"]));
+        var_dump($this, $persona);
+
+       // Funciones::enviarCorreo($this->asunto,$this->getMensajeArmado(),$this->empresa,trim($persona["correo"]));
 
         return ["rpt"=>true, "msj"=>"Mensaje enviado"];
     }   
