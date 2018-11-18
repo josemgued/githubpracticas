@@ -67,7 +67,6 @@ class Mensaje {
 
     
     public function enviarCorreo($tipo){
-        var_dump($tipo);
         require 'PHPMailer/PHPMailerAutoload.php';
 
         switch($tipo){

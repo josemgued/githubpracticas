@@ -309,10 +309,11 @@ class Persona extends Conexion {
                             "razon_social"=> $this->esEstudiante() ? "" : $this->getRazonSocial() ,
                             "documento"=>  $this->esEstudiante() ? $this->getCodigoUniversitario() : $this->getRuc(),
                             "correo"=>$this->getCorreo()];
+                            
             require 'Mensaje.clase.php';
             $objMensaje = new Mensaje;
             $objMensaje->setPara($persona);     
-            //$objMensaje->enviarCorreo("CONFIRMAR_CUENTA");
+            $objMensaje->enviarCorreo("CONFIRMAR_CUENTA");
 
             return array("rpt"=>true,"msj"=>"Cuenta creada correctamente. Se ha enviado correo de confirmación.");
         } catch (Exception $exc) {
