@@ -279,8 +279,6 @@ class Persona extends Conexion {
                 }
             }
 
-            var_dump("code uni");
-
             /*Check if dni not repetido*/
             $this->setApellidos(strtoupper($this->getApellidos()));
             $this->setNombres(strtoupper($this->getNombres()));
@@ -302,9 +300,6 @@ class Persona extends Conexion {
                 $campos_valores["cargo"] = $this->getCargo();
                 $campos_valores["ruc"] = $this->getRuc();
             }
-
-            var_dump($campos_valores);
-            exit;
 
             //$this->insert($this->tbl,$campos_valores);
 
