@@ -299,7 +299,9 @@ class Persona extends Conexion {
                 $campos_valores["ruc"] = $this->getRuc();
             }
 
-            $this->insert($this->tbl,$campos_valores);
+            var_dump($this);
+
+            //$this->insert($this->tbl,$campos_valores);
 
             //Si todo ok, enviar correo.
             //Persona: Nombres, apellidos (razonsocial), correo, (ruc or cod uni) 
@@ -316,6 +318,7 @@ class Persona extends Conexion {
                             "documento"=>  $this->esEstudiante() ? $this->getCodigoUniversitario() : $this->getRuc(),
                             "correo"=>$this->getCorreo()];
 
+                            exit;
             require_once 'Mensaje.clase.php';
             $objMensaje = new Mensaje();
             $objMensaje->setPara($persona);     
