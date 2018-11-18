@@ -248,8 +248,12 @@ class Persona extends Conexion {
         try {
             /*Creación de cuenta desde el app. Por defecto se registra validado en -1.*/
             /*RUC VS DNI*/
+
             $doc = $this->esEstudiante() ? "dni" : "ruc";
             $valorDoc = $this->esEstudiante() ? $this->getDni() : $this->getRuc();
+
+
+            var_dump($this);
 
             $sql = "SELECT COUNT(*) > 0 FROM $this->tbl WHERE $doc = :0 AND estado_mrcb = 1";
             $existe = $this->consultarValor($sql, [$valorDoc]);
@@ -298,8 +302,7 @@ class Persona extends Conexion {
                 $campos_valores["cargo"] = $this->getCargo();
                 $campos_valores["ruc"] = $this->getRuc();
             }
-
-            var_dump($this);
+            exit;
 
             //$this->insert($this->tbl,$campos_valores);
 
@@ -318,7 +321,6 @@ class Persona extends Conexion {
                             "documento"=>  $this->esEstudiante() ? $this->getCodigoUniversitario() : $this->getRuc(),
                             "correo"=>$this->getCorreo()];
 
-                            exit;
             require_once 'Mensaje.clase.php';
             $objMensaje = new Mensaje();
             $objMensaje->setPara($persona);     
