@@ -23,6 +23,7 @@ try {
     $obj->setCodCarreraUniversitaria($datosFormulario->txtcarrera);
     $obj->setCodUniversidad($datosFormulario->txtuniversidad);
 
+var_dump($obj); exit;
     Funciones::imprimeJSON(200, "OK", $obj->guardarNuevaCuenta());
     
 } catch (Exception $exc) {
