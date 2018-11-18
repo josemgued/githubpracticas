@@ -269,6 +269,7 @@ class Persona extends Conexion {
             if ($existe){
                 return array("rpt"=>false,"msj"=>"CELULAR ya existente.");
             }
+               var_dump("ceeluar uni");
 
             if ($this->esEstudiante()){
                 $sql = "SELECT COUNT(*) > 0 FROM $this->tbl WHERE codigo_universitario = :0 AND estado_mrcb = 1";
@@ -277,6 +278,8 @@ class Persona extends Conexion {
                     return array("rpt"=>false,"msj"=>"CÓDIGO UNIVERSITARIO ya existente.");
                 }
             }
+
+            var_dump("code uni");
 
             /*Check if dni not repetido*/
             $this->setApellidos(strtoupper($this->getApellidos()));
