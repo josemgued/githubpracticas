@@ -2,7 +2,12 @@
 
 var_dump($_GET);
 //require_once '..\datos\local_config.php';
+try{
 require_once '..\negocio\Persona.clase.php';
+} catch (Exception $exc) {
+    var_dump($exc->getMessage());        
+}   
+
 
 if (!isset($_GET["pid"]) ||  !isset($_GET["tuser"])){
     echo '<h1>Enlace no válido.</h1>';
