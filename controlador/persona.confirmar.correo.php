@@ -4,6 +4,8 @@ require_once '..\datos\local_config.php';
 require_once '..\negocio\Persona.clase.php';
 
 
+var_dump($_GET);
+exit;
 if (!isset($_GET["pid"]) ||  !isset($_GET["tuser"])){
     echo '<h1>Enlace no válido.</h1>';
     return;
