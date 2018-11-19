@@ -1,7 +1,6 @@
 <?php
-//require_once '..\datos\local_config.php';
-
-//require_once '..\negocio\Persona.clase.php';
+require_once '../datos/local_config.php';
+require_once '../negocio/Persona.clase.php';
 
 
 if (!isset($_GET["pid"]) ||  !isset($_GET["tuser"])){
