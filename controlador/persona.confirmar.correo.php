@@ -1,6 +1,4 @@
 <?php
-
-var_dump($_GET);
 //require_once '..\datos\local_config.php';
 
 require_once '..\negocio\Persona.clase.php';
@@ -14,8 +12,12 @@ if (!isset($_GET["pid"]) ||  !isset($_GET["tuser"])){
 $pid = $_GET["pid"];
 $tuser = $_GET["tuser"];
 
+var_dump($pid, $tuser);
+
 try{
  $obj = new Persona();
+    
+    var_dump($obj); exit;
  $resultado = $obj->confirmacionCorreo($pid, $tuser);
 } catch (Exception $exc) {
     var_dump($exc->getMessage());        
