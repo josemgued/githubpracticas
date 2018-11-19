@@ -11,12 +11,8 @@ if (!isset($_GET["pid"]) ||  !isset($_GET["tuser"])){
 $pid = $_GET["pid"];
 $tuser = $_GET["tuser"];
 
-var_dump($pid, $tuser);
-exit;
 try{
- $obj = new Persona();
-    
-    var_dump($obj); exit;
+ $obj = new Persona(); var_dump($obj); exit;
  $resultado = $obj->confirmacionCorreo($pid, $tuser);
 } catch (Exception $exc) {
     var_dump($exc->getMessage());        
