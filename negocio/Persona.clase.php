@@ -168,6 +168,7 @@ class Persona extends Conexion {
         try {            
 
             $esEmpresario = $this->tbl == "empresario";
+
             if ($esEmpresario){
                 $sql_0 = " e.cod_empresario as cod_usuario, razon_social, c.descripcion as cargo, img_logo as url ";      
                 $sql_1 =  " FROM ".$this->tbl." e INNER JOIN cargo c ON e.cargo = c.cod_cargo ";         
@@ -176,11 +177,19 @@ class Persona extends Conexion {
                 $sql_1 = " FROM ".$this->tbl." e";
             }
 
-            $sql = " SELECT ".$sql_0.", apellidos,nombres,password,estado ".$sql_1." WHERE e.estado_mrcb = 1 AND e.estado = 'A' AND correo  = :0";
+            $sql = " SELECT ".$sql_0.", apellidos,nombres,password,estado, validado ".$sql_1." WHERE e.estado_mrcb = 1 AND e.estado = 'A' AND correo  = :0";
 
             $res = $this->consultarFila($sql, array($this->getCorreo()));
 
             if ($res != false){
+
+                if ($res["validado"] == "-1"){
+                    return array("rpt"=>false, "msj"=>"Su cuenta aún no ha sido VALIDADA por nuestro administrador."); 
+                }
+
+                if ($res["validado"] == "0"){
+                    return array("rpt"=>false, "msj"=>"Esta dirección de correo electrónico ha sido rechazada. Consulte nuestro administrador."); 
+                }
 
                 if ($res["estado"] == 'A'){
                     if ($res["password"] == md5($this->getPassword())){
@@ -304,7 +313,6 @@ class Persona extends Conexion {
 
             //Si todo ok, enviar correo.
             //Persona: Nombres, apellidos (razonsocial), correo, (ruc or cod uni) 
-
             $persona = ["nombres_persona"=> $this->getNombres()." ".$this->getApellidos(),
                             "razon_social"=> $this->esEstudiante() ? "" : $this->getRazonSocial() ,
                             "documento"=>  $this->esEstudiante() ? $this->getCodigoUniversitario() : $this->getRuc(),

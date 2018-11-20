@@ -127,6 +127,12 @@ class Estudiante extends Persona {
 
     public function iniciarSesionMovil()
     {
+       return parent::iniciarSesionMovil();
+    }
+    
+/*
+    public function iniciarSesionMovil()
+    {
         try {
 
             $sql = "SELECT e.cod_estudiante as cod_usuario, apellidos,nombres, password, img_perfil as url, estado, validado
@@ -173,7 +179,7 @@ class Estudiante extends Persona {
             return array("rpt"=>false,"msj"=>$exc->getMessage());
         }
     }
-
+*/
     public function verificarSesion() 
     {
        return parent::verificarSesion();
