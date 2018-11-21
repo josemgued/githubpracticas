@@ -9,7 +9,7 @@ class Estudiante extends Persona {
     private $fecha_nacimiento;
     private $sexo;
     private $codigo_universitario;
-    private $carrera_universitaria;
+    private $cod_carrera_universitaria;
     private $cod_universidad;
     /*img_perfil*/   
 
