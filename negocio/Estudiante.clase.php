@@ -228,7 +228,7 @@ class Estudiante extends Persona {
             $esEditable = $this->consultarValor("SELECT COUNT(*) < 1 FROM aviso_laboral_estudiante WHERE cod_estudiante = :0", array($this->getCodEstudiante()));
 
             /*Pasar tb las regiones / provincas y disritos acorde a lo obtenido*/
-            return array("rpt"=>true,"data"=>["estudiante"=>$resultado, "carreras"=>$carreras, "ubigeo"=>["distritos"=>$distritos, "provincias"=>$provincias,"regiones"=>$regiones], "carrera_editable"=>$esEditable]);
+            return array("rpt"=>true,"data"=>["estudiante"=>$resultado, "carreras"=>$carreras, "ubigeo"=>["distritos"=>$distritos, "provincias"=>$provincias,"regiones"=>$regiones], "carrera_editable"=>($esEditable ? "true" : "false")]);
         } catch (Exception $exc) {
             return array("rpt"=>false,"msj"=>$exc->getMessage());
         }
