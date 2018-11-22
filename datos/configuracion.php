@@ -3,11 +3,11 @@
 
 /**CONF. NET*/
 define("TIPO_BD","postgres"); //postgres,mysql
-define("SERVIDOR_BD", "ec2-54-225-68-133.compute-1.amazonaws.com");
-define("USUARIO_BD", "upcsapkmmjtcie");
-define("CLAVE_BD", "948c8eb874fcdd1e41228b652d8b76e3dd51c81b0a5bd0170f3026a3f5c56585");
+define("SERVIDOR_BD", "ec2-54-225-110-152.compute-1.amazonaws.com");
+define("USUARIO_BD", "wgaymdmtecfvqk");
+define("CLAVE_BD", "798b23053bc7d6ff5de4ff1cceafe86853011cc903f6c3ccf0bb6adada3ae147");
 define("PUERTO_BD", "5432");
-define("NOMBRE_BD", "dbu6cbrqmluv6t");
+define("NOMBRE_BD", "d4l1ihc4s367ac");
 
 /**CONF. LOCAL*/
 /*
