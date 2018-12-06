@@ -198,7 +198,8 @@ class Persona extends Conexion {
                                     "nombres"=> $res["nombres"],
                                     "cod_usuario"=> $res["cod_usuario"],
                                     "apellidos"=> $res["apellidos"],
-                                    "url"=>$res["url"]
+                                    "url"=>$res["url"],
+                                    "tipo_usuario"=>($esEmpresario ? "Empresario" : "Estudiante")
                                     );
 
                         if ($esEmpresario){
