@@ -3,7 +3,7 @@ window.location.hash = "";
 var globalVars = {
 	appNombre : "APPracticar",
 	//URL: "https://serverpracticas.herokuapp.com"
-	URL: "../"
+	URL: ".."
 	//URL: "http://localhost/appJoseServer"
 },
 data = {};
