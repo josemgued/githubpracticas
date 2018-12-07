@@ -234,7 +234,7 @@ class Persona extends Conexion {
         }
     }
 
-    protected function verificarSesion()
+    public function verificarSesion()
      {
         try {
 
