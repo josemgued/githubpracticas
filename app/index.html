@@ -1,0 +1,1816 @@
+<html>
+  <head>
+    <!-- Required meta tags-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!-- Color theme for statusbar -->
+    <meta name="theme-color" content="#2196f3">
+    <!-- Your app title -->
+    <title>APPracticar</title>
+    <!-- Path to Framework7 Library CSS, Material Theme -->
+    <link rel="stylesheet" href="css/framework7.material.min.css">
+    <!-- Path to Framework7 color related styles, Material Theme -->
+    <link rel="stylesheet" href="css/framework7.material.colors.min.css">
+    <!-- F7 Icons -->
+    <link rel="stylesheet" href="css/framework7.icons/css/framework7-icons.css">
+    <!-- Path to your custom app styles-->
+     <link rel="stylesheet" href="css/app.css"> 
+  </head>
+  <body>
+    <!-- Left Panel with Reveal effect -->
+    <div class="panel-overlay"></div>
+    <div class="panel panel-left panel-reveal">
+        <div class="content-block block-img-perfil" id="perfil-izq" style="margin-bottom:0">
+          <script id="perfilIzqT7" type="text/template7">
+              <img src="{{url}}">
+              <h2>{{nombres}} {{apellidos}}</h2>
+              {{fecha_formateada}}
+          </script>
+        </div>
+        <div class="content-block-title" style="margin-top:0">MENÚ</div>
+        <div class="list-block">
+          <ul id="lst-menu">
+           <script id="menuIzqT7" type="text/template7">
+           {{#each this}}
+             <li>
+               <a href="#{{href}}" class="item-link item-content color-white bg-blue">
+                 <div class="item-media"><i class="icon f7-icons">{{icon}}</i></div>
+                 <div class="item-inner">
+                  <div class="item-title">{{rotulo}}</div>
+                 </div>
+               </a>
+             </li>
+           {{/each}}
+           <li> 
+             <a href="#" onclick="app.darBajaCuenta()" class="item-content color-white bg-red">
+               <div class="item-media"><i class="icon f7-icons">close</i></div>
+               <div class="item-inner">
+               <div class="item-title">Dar de baja Cuenta</div>
+             </div>
+             </a>
+           </li>
+           <li> 
+             <a href="#" onclick="app.cerrarSesion()" class="item-content color-white bg-bluegray">
+               <div class="item-media"><i class="icon f7-icons">logout</i></div>
+               <div class="item-inner">
+               <div class="item-title">Cerrar Sesión</div>
+             </div>
+             </a>
+           </li>
+           </script>    
+          </ul>
+        </div>        
+    </div>
+    <!-- Views -->
+      <div class="views">
+          <div class="login-screen modal-in">
+            <div class="view">
+              <div class="page">
+                <div class="page-content login-screen-content">
+                    <div class="login-screen-title"></div>
+                    <div class="content-block align-center" style="margin-bottom:16px;">
+                      <img style="width:15.5em" src="img/test.jpg">
+                    </div>
+                    <form class="content-block" style="max-width: 15x;margin: 24px auto;">
+                      <div class="list-block inset">
+                        <ul>
+                          <li class="item-content ">
+                            <div class="item-media"><i class="icon f7-icons">email</i></div>
+                            <div class="item-inner">
+                              <div class="item-title floating-label floating-label-big">Correo</div>
+                              <div class="item-input">
+                                <input type="text" name="p_correo" id="txt-usuario" placeholder="Correo">
+                              </div>
+                            </div>
+                          </li>
+                          <li class="item-content">
+                            <div class="item-media"><i class="icon f7-icons">lock</i></div>
+                            <div class="item-inner">
+                              <div class="item-title floating-label floating-label-big">Password</div>
+                              <div class="item-input">
+                                <input type="password" name="p_password" id="txt-contraseña" placeholder="Password">
+                              </div>
+                            </div>
+                          </li>
+                          <li class="item-content">
+                            <div class="item-inner">
+                              <div class="item-title">Tipo de Usuario</div>
+                              <div class="item-input">
+                                <select id="cbo-tipo-persona">
+                                  <option value="Estudiante">Estudiante</option>
+                                  <option value="Empresario">Empresario</option>
+                                </select>
+                              </div>
+                            </div>
+                          </li>
+                          <li class="item-content blk-ip" style="display:none">
+                            <div class="item-media"><i class="icon f7-icons">radio</i></div>
+                            <div class="item-inner">
+                              <div class="item-title floating-label floating-label-big">IP</div>
+                              <div class="item-input">
+                                <input type="text" id="txt-ip" value="localhost" placeholder="IP">
+                              </div>
+                            </div>
+                          </li>
+                        </ul>
+                      </div>
+
+                      <p><button type="submit" class="button bg-blue button-big color-white margin-auto">INGRESAR</button>
+                      </p>                      
+                      <p style="font-size:1.35em;margin-bottom:0px;" class="align-center"><a class="close-login-screen" href="#estudiante-cuenta-nueva">Crear Cuenta Estudiante</a></p>
+                      <p style="font-size:1.35em;margin-top:0px;" class="align-center"><a class="close-login-screen" href="#empresario-cuenta-nueva">Crear Cuenta Empresario</a></p>
+                    </form>
+                     <!-- TRAP-->
+                    <button id="trick" type="button" class="center" style="opacity:0;position: absolute;top: 0;left: 0;height: 50px;">TRICK</button> <!-- TRAP-->
+                </div>
+              </div>
+            </div>
+        </div>
+      <!-- Your main view, should have "view-main" class -->
+        <div class="view view-main">
+          <!-- Pages container, because we use fixed navbar and toolbar, it has additional appropriate classes-->
+          <div class="pages navbar-fixed">
+          <!-- Page, "data-page" contains page name -->        
+          <div class="page cached" data-page="empresario-convocatoria-formulario">
+            <div class="navbar">
+              <div class="navbar-inner bg-blue">
+                 <div class="left">
+                     <a href="#" class="back link">
+                          <i class="icon icon-back"></i>
+                     </a>
+                 Formulario Convocatoria
+                 </div>
+              </div>
+            </div>
+            <!-- Scrollable page content -->
+            <script id="preguntasConvocatoriaFormularioT7" type="text/template7">         
+                <!--
+                {{#nombre_empresa}}
+                  <div class="item-inner">
+                    <b>Empresa: {{this}}</b>
+                  </div>
+                {{/nombre_empresa}}
+                -->
+                  <div class="item-inner">
+                    <b>Convocatoria: {{titulo_convocatoria}}</b>
+                  </div>
+                  <br>
+                {{#each bloques}}
+                <div data-id="{{id}}" style="padding-bottom: 20px;">
+                      <div class="item-title label-categoria-pregunta">{{nombre}}</div>
+                      <div class="list-block inputs-list margin-0">
+                        <ul>
+                          {{#each preguntas}}
+                                <li class="pregunta card" data-id="{{cod_pregunta}}">
+                                          <div class="card-content ">     
+                                            <div class="card-content-inner">     
+                                              <label class="label">{{../rotulo}} N° {{item}}</label>
+                                              <div>{{nombre_pregunta}}</div>
+                                            </div>
+                                          </div>
+                                          <div class="card-footer">
+                                              {{#js_if 'this.categoria_pregunta != 4'}}
+                                              <ul>
+
+                                                    {{#each opciones}}                                  
+                                                      <li>
+                                                        <label class="label-radio item-content disabled">
+                                                                <!-- Checked by default -->
+                                                                <input type="radio" value="{{cod_opcion}}" name="o_{{../categoria_pregunta}}_{{../cod_pregunta}}">
+                                                                <div class="item-media">
+                                                                  <i class="icon icon-form-radio"></i>
+                                                                </div>
+                                                                <div class="item-inner">
+                                                                  <div class="item-title">{{rotulo}}  <b>({{valor_asignado}})</b></div>
+                                                                </div>
+                                                       </label>
+                                                      </li>
+                                                    {{/each}}                                                    
+                                                      {{#js_if 'this.nombre_archivo != null'}}
+                                                              <li class="blk-archivos-read" style="font-size:.7em">
+                                                              <p style="margin:0">Archivos cargados: </p>
+                                                              <a  href="javascript:;" data-url="{{url_archivo}}" title="Descargar"  class="descargar-archivo">
+                                                                  <i class="icon f7-icons"  style="font-size:1em">download</i> {{nombre_archivo}}</a>
+                                                            </li>
+                                                      {{/js_if}}
+                                              </ul>
+                                              {{else}}
+                                                 <div class="item-input">
+                                                      <input name="o_{{../categoria_pregunta}}_{{../cod_pregunta}}" data-valores="{{json_valores}}" disabled type="text" placeholder="Salario a percibir" value="{{monto_registrado}}">
+                                                 </div>
+                                              {{/js_if}}
+                                          </div>
+                                 </li>
+                          {{/each}}
+                       </ul>
+                      </div>                      
+               </div>
+              {{/each}}
+            </script>
+            <div class="page-content">                        
+              <div class="content-block-title">FORMULARIO CONVOCATORIA</div>     
+              <div class="list-block inset">
+                  <div id="blkFormularioFC">
+                  </div>                                  
+              </div>
+            </div>
+          </div>
+
+          <div class="page cached" data-page="empresario-convocatoria-postulantes">
+            <div class="navbar">
+              <div class="navbar-inner bg-blue">
+                 <div class="left">
+                     <a href="#empresario-mis-convocatorias" class=" link">
+                       </i><i class="icon icon-back"></i>
+                     </a>
+                 Postulantes Convocatoria
+                 </div>
+              </div>
+            </div>
+            
+            <div class="page-content">
+                <div class="card">
+                  <div class="card-content">
+                      <div class="card-header"><b>Convocatoria:</b></div>
+                      <div class="card-content-inner" id="txtConvocatoriaPostulantes"></div>
+                  </div>
+                </div> 
+                <div class="content-block-title">LISTA POSTULANTES
+                    <b class="perfil-requerido" id="lblPerfilRequerido">PERFIL REQUERIDO:</b>
+                </div>                 
+                <div class="list-block">
+                  <ul id="blkPostulantes">
+                    <script id="postulantesPostulantesT7" type="text/template7">
+                          {{#each postulantes}}
+                          <li>
+                            <a href="#empresario-postulante-formulario?cv={{../cod_aviso_laboral}}&e={{cod_estudiante}}" class="item-link item-content">
+                              <div class="item-inner">
+                                <div class="item-title {{#js_if '@index < 3'}}color-green bold{{/js_if}}"><b>({{puntaje}})</b> {{porcentaje_puntaje}}% {{nombre_postulante}}</div>
+                                <div class="item-after"><span class="badge color-{{estado_color}}">{{estado}}</span></div>
+                              </div>
+                            </a>
+                          </li>
+                          {{else}}
+                          <li class="item-content"><i>Sin postulantes.</i></li>
+                          {{/each}}                            
+                    </script> 
+                  </ul>
+                </div> 
+          </div>
+        </div>
+
+          <div class="page cached" data-page="empresario-cuenta-nueva">
+          <!-- Top Navbar. In Material theme it should be inside of the page-->
+              <div class="navbar">
+                <div class="navbar-inner bg-blue">
+                   <div class="left">
+                       <a href="#" class="link open-login-screen">
+                            <i class="icon icon-back"></i>
+                       </a>
+                   Cuenta Nueva
+                   </div>
+                </div>
+              </div>
+
+            <!-- Scrollable page content -->
+            <div class="page-content">
+                <form class="list-block inset">
+                <ul>
+                  <!-- Text inputs -->
+                  <li>
+                        <div class="item-content">
+                          <div class="item-inner">
+                            <div class="item-title floating-label">Razón Social</div>
+                            <div class="item-input">
+                              <input type="text" name="txtrazonsocial" id="txtrazonsocial" required placeholder="Razón social">
+                            </div>
+                          </div>
+                        </div>
+                  </li>
+                  <li>
+                        <div class="item-content">
+                          <div class="item-inner">
+                            <div class="item-title floating-label">RUC</div>
+                            <div class="item-input">
+                              <input type="text" name="txtruc" id="txtruc" maxlength ="11" required placeholder="Número RUC">
+                            </div>
+                          </div>
+                        </div>
+                  </li>
+                  <li>
+                        <div class="item-content">
+                          <div class="item-inner">
+                            <div class="item-title floating-label">Correo electrónico</div>
+                            <div class="item-input">
+                              <input type="email" name="txtemail" id="txtemail" required placeholder="Correo electrónico">
+                            </div>
+                          </div>
+                        </div>
+                  </li>
+                  <li>
+                        <div class="item-content">
+                          <div class="item-inner">
+                            <div class="item-title floating-label">Apellidos</div>
+                            <div class="item-input">
+                              <input type="text" name="txtapellidos" id="txtapellidos" required placeholder="Apellidos">
+                            </div>
+                          </div>
+                        </div>
+                  </li>
+                  <li>
+                        <div class="item-content">
+                          <div class="item-inner">
+                            <div class="item-title floating-label">Nombres</div>
+                            <div class="item-input">
+                              <input type="text" name="txtnombres" id="txtnombres" required placeholder="Nombres">
+                            </div>
+                          </div>
+                        </div>
+                  </li>
+                  <li>
+                        <div class="item-content">
+                          <div class="item-inner">
+                            <div class="item-title">Cargo Empresa</div>
+                            <div class="item-input">
+                              <div class="item-inner">
+                                  <select  name="txtcargo" id="txtcargo"></select>
+                              <!-- 
+                              <input type="text" name="txtcargo" id="txtcargo" required placeholder="Cargo en la empresa">
+                            -->
+                            </div>
+                          </div>
+                        </div>
+                  </li>
+                  <li>
+                        <div class="item-content">
+                          <div class="item-inner">
+                            <div class="item-title floating-label">Password</div>
+                            <div class="item-input">
+                              <input type="password" name="txtpassword" id="txtpassword" required placeholder="Password">
+                            </div>
+                          </div>
+                        </div>
+                  </li>
+                  <li>
+                        <div class="item-content">
+                          <div class="item-inner">
+                            <div class="item-title floating-label">Repetir Password</div>
+                            <div class="item-input">
+                              <input type="password" name="txtrepetirpassword" id="txtrepetirpassword" required placeholder="Repetir Password">
+                            </div>
+                          </div>
+                        </div>
+                  </li>
+                  <li class="item-content input-error" style="display:none" id="spnNuevaCuentaError"><small>Las claves deben coincidir</small></li>
+                </ul>
+                <p><button type="submit" id="btnGuardarNuevaCuenta" class="button button-fill margin-auto color-blue button-big">GUARDAR</button></p>
+                </form>
+            </div>
+          </div>
+
+          <div class="page cached" data-page="empresario-datos-empresa">
+          <!-- Top Navbar. In Material theme it should be inside of the page-->
+              <div class="navbar">
+                <div class="navbar-inner bg-blue">
+                   <div class="left">
+                       <a href="#" class="open-panel link">
+                         <i class="icon icon-bars"></i>
+                       </a>
+                   Datos Empresa
+                   </div>
+                </div>
+              </div>
+
+            <!-- Scrollable page content -->
+            <div class="page-content">
+                <div class="list-block inset">
+                    <form>
+                    <ul>                      
+                      <span style="padding-left: 16px;font-size: 12px;">PERSONAL ENCARGADO</span>
+                      <li>
+                        <div class="item-content">
+                              <div class="item-inner">
+                                <div class="item-title label">Apellidos</div>
+                                <div class="item-input">
+                                   <input type="text" name="txtapellidos" id="txtapellidosdatos" placeholder="Apellidos">
+                                </div>
+                              </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="item-content">
+                              <div class="item-inner">
+                                <div class="item-title label">Nombres</div>
+                                <div class="item-input">
+                                   <input type="text" name="txtnombres" id="txtnombresdatos" placeholder="Nombres">
+                                </div>
+                              </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="item-content">
+                          <div class="item-inner">
+                                <div class="item-title label">Cargo</div>
+                                <div class="item-input">
+                                  <select  name="txtcargo" id="txtcargodatos"></select>
+                                </div>
+                          </div>
+                        </div>
+                      </li>
+                      <span style="padding-left: 16px;font-size: 12px;">SOBRE LA EMPRESA</span>
+                      <li>
+                         <div class="item-content">
+                              <div class="item-inner align-center">
+                                <div class="item-title label">Imagen Perfil</div>
+                                <img id="imgperfil" style="width: 90%;padding: .25em;max-width:400px" src="img/perfil-def.jpg">
+                                <a href="#" id="btnEditarPerfil" class="button button-fill button-small color-lightblue margin-auto">Cambiar Imagen</a>
+                                <input style="display:none" name="txtperfil" type="file" id="txtperfildatos">
+                              </div>
+                          </div>
+                      </li>
+                      <li>
+                        <div class="item-content">
+                              <div class="item-inner">
+                                <div class="item-title label">Razón Social</div>
+                                <div class="item-input">
+                                  <textarea name="txtrazonsocial" id="txtrazonsocialdatos" placeholder="Razón Social"></textarea>
+                                </div>
+                              </div>
+                        </div>
+                      </li>
+                      <li class="hide">
+                        <div class="item-content">
+                              <div class="item-inner">
+                                <div class="item-title label">Nombre Empresa</div>
+                                <div class="item-input">
+                                   <input type="text" name="txtnombreempresa" id="txtnombreempresadatos" placeholder="Nombre Empresa">
+                                </div>
+                              </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="item-content">
+                              <div class="item-inner">
+                                <div class="item-title label">Descripción empresa</div>
+                                <div class="item-input">
+                                   <textarea name="txtdescripcion" id="txtdescripcionempresadatos" placeholder="Descripción empresa"></textarea>
+                                </div>
+                              </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="item-content">
+                              <div class="item-inner">
+                                <div class="item-title label">Domicilio Actual</div>
+                                <div class="item-input">
+                                   <input type="text" name="txtdomicilio" id="txtdomiciliodatos" placeholder="Domicilio Actual">
+                                </div>
+                              </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="item-content">
+                              <div class="item-inner">
+                                <div class="item-title label">Región</div>
+                                <div class="item-input">
+                                  <select  name="txtregion" id="txtregiondatos"></select>
+                                </div>
+                              </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="item-content">
+                              <div class="item-inner">
+                                <div class="item-title label">Provincia</div>
+                                <div class="item-input">
+                                  <select  name="txtprovincia" id="txtprovinciadatos"></select>
+                                </div>
+                              </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="item-content">
+                              <div class="item-inner">
+                                <div class="item-title label">Distrito</div>
+                                <div class="item-input">
+                                  <select  name="txtdistrito" id="txtdistritodatos"></select>
+                                </div>
+                              </div>
+                        </div>
+                      </li>
+                      <li class="row">
+                          <div class="col-50">
+                             <div class="item-content">
+                              <div class="item-inner">
+                                <div class="item-title label">Celular</div>
+                                <div class="item-input">
+                                   <input type="text" name="txtcelular" id="txtcelulardatos" placeholder="Celular">
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                      </li>
+                      <li>
+                        <div class="item-content">
+                              <div class="item-inner">
+                                <div class="item-title label">Tipo Empresa</div>
+                                <div class="item-input">
+                                  <select name="txttipoempresa" id="txttipoempresadatos"></select>
+                                </div>
+                              </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="item-content">
+                              <div class="item-inner">
+                                <div class="item-title label">Sector Industrial</div>
+                                <div class="item-input">
+                                  <select name="txtsectorindustrial" id="txtsectorindustrialdatos"></select>
+                                </div>
+                              </div>
+                        </div>
+                      </li>
+                    </ul>
+                    <p><button type="submit" id="btnGuardarDatos" class="button button-fill margin-auto color-blue button-big">GUARDAR</button></p>
+                    </form>
+                </div>
+            </div>
+      </div>          <div class="page cached" data-page="empresario-formulario-convocatoria">
+            <div class="navbar">
+              <div class="navbar-inner bg-blue">
+                 <div class="left">
+                     <a href="#" class="back link">
+                          <i class="icon icon-back"></i>
+                     </a>
+                 Nueva Convocatoria
+                 </div>
+              </div>
+            </div>
+            <!-- Scrollable page content -->
+            <script id="bloquePreguntaFormularioT7" type="text/template7">                
+                {{#each this}}
+                  <div class="_blk_" data-id="{{codigo}}" style="padding-bottom: 20px;">
+                      <div class="item-title label-categoria-pregunta __ti">{{nombre}}</div>
+                      <div class="list-block inputs-list margin-0">
+                        <ul class="__blkp "></ul>
+                      </div>
+                      <a href="#" title="Agregar pregunta" class="__b {{#js_if 'this.btn_pregunta == true'}}{{else}}hide{{/js_if}} button button-small button-fill">AGREGAR {{nombre}}
+                      </a>
+                  </div>
+               {{else}}
+                  <p class="item-ttle label align-center">Sin categorías registradas</p>
+               {{/each}}
+            </script>
+
+            <script id="opcionFormularioT7" type="text/template7">                
+                {{#each opciones}}
+                  <div class="row opcion">
+                    <div class="col-65">
+                        <div class="item-inner">
+                          <div class="item-title label">{{n}}.- {{../s}}</div>
+                          <div class="item-input item-input-mini">
+                          <input type="{{#js_if '../s == "Monto <="'}}number{{else}}text{{/js_if}}" required name="desc_{{../np}}_{{n}}" value="{{d}}" placeholder="{{../s}}">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-35">
+                      <div class="item-inner">
+                        <div class="item-title label">Valor</div>
+                          <div class="item-input item-input-mini">
+                          <input type="number" required name="val_{{../np}}_{{n}}" max="10" min="0" value="{{#valor}}{{this}}{{else}}0{{/valor}}"/>
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+                {{else}}
+                  <p class="item-title label align-center">Sin opciones</p>
+               {{/each}}
+            </script>
+
+            <script id="preguntaFormularioT7" type="text/template7">                
+                {{#each this}}
+                   <li class="pregunta card" data-id="{{id}}">
+                      <div class="card-content">
+                          <div class="item-content">
+                                <div class="item-inner">
+                                  <div class="item-title label">
+                                  <span class="__lblcp {{#js_if 'this.solo_personalizada == true'}} hide {{/js_if}}">{{rotulo}} {{n}}</span>
+                                  <span class="item-eliminar __cp"><i class="icon f7-icons">close_round_fill</i></span>
+                                  </div>
+                                  <div class="item-input">
+                                     <textarea class="__np" name="p_{{id}}" required type="text" 
+                                     placeholder="{{rotulo}}"
+                                     >{{texto_pregunta}}</textarea>
+                                  </div>
+                                </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-60">
+                               <div class="item-content {{#js_if 'this.solo_personalizada == true'}}invisible{{/js_if}}">
+                                  <div class="item-inner">
+                                    <div class="item-title label">Tipo Pregunta</div>
+                                    <div class="item-input">
+                                       <select class="__tp" name="tp_{{id}}" >
+                                          <option value="0">Personalizada</option>
+                                          <option value="1">Dicotómica</option>
+                                          <option value="2">Escala (3)</option>
+                                          <option value="3">Escala (5)</option>
+                                        </select>
+                                    </div>
+                                  </div>
+                                </div>
+                            </div>
+                            <div class="col-40">
+                               <div class="item-content">
+                                  <div class="item-inner">
+                                    <div class="item-title label"># Opciones</div>
+                                    <div class="item-input">
+                                       <input class="__no" required type="number" max="6" min="2" name="popciones_{{id}}" value="{{numero_opciones}}">
+                                    </div>
+                                  </div>
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="card-footer">
+                          <div class="__blko">
+                            <div class="item-title label">Lista Opciones: </div>
+                                {{#each opciones}}
+                                  <div class="row opcion">
+                                    <div class="col-65">
+                                        <div class="item-inner">
+                                          <div class="item-title label">{{n}}.- {{../s}}</div>
+                                          <div class="item-input item-input-mini">
+                                          <input type="{{#js_if '../s == "Monto <="'}}number{{else}}text{{/js_if}}" required name="desc_{{../np}}_{{n}}" value="{{d}}" placeholder="{{../s}}">
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="col-35">
+                                      <div class="item-inner">
+                                        <div class="item-title label">Valor</div>
+                                          <div class="item-input item-input-mini">
+                                          <input type="number" required name="val_{{../np}}_{{n}}" max="10" min="0" value="{{#valor}}{{this}}{{else}}0{{/valor}}"/>
+                                          </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                {{else}}
+                                  <p class="item-title label align-center">Sin opciones</p>
+                               {{/each}}
+                            <!--
+                            {{> "opcionFormularioT7"}}
+                            <div class="row opcion">
+                                    <div class="col-65">
+                                      <div class="item-inner">
+                                        <div class="item-title label">1.- {{#js_if 'this.es_salario == true'}}Monto <={{else}}Descripción{{/js_if}}</div>
+                                        <div class="item-input item-input-mini">
+                                        <input type="{{#js_if 'this.es_salario == true'}}number{{else}}text{{/js_if}}"  required name="desc_{{id}}_0" value="{{d}}" placeholder="{{#js_if 'this.es_salario == true'}}Monto <={{else}}Descripción{{/js_if}}">
+                                      </div>
+                                    </div>
+                                    </div>
+                                    <div class="col-35">
+                                      <div class="item-inner">
+                                        <div class="item-title label">Valor</div>
+                                          <div class="item-input item-input-mini">
+                                          <input type="number"  required name="val_{{id}}_0" max="10" min="0" value="0">
+                                          </div>
+                                      </div>
+                                    </div>
+                            </div>
+                            <div class="row opcion">
+                                    <div class="col-65">
+                                      <div class="item-inner">
+                                        <div class="item-title label">2.- {{#js_if 'this.es_salario == true'}}Monto{{else}}Descripción{{/js_if}}</div>
+                                        <div class="item-input item-input-mini">
+                                          <input type="{{#js_if 'this.es_salario == true'}}number{{else}}text{{/js_if}}" required name="desc_{{id}}_1" value="{{d}}" placeholder="{{#js_if 'this.es_salario == true'}}Monto <={{else}}Descripción{{/js_if}}">
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="col-35">
+                                      <div class="item-inner">
+                                        <div class="item-title label">Valor</div>
+                                          <div class="item-input item-input-mini">
+                                          <input type="number" required name="val_{{id}}_1" max="10" min="0" value="0">
+                                          </div>
+                                      </div>
+                                    </div>
+                            </div> 
+                            -->
+                          </div>
+                        </div>
+                    </li>
+               {{/each}}                      
+            </script>
+            <div class="page-content">     
+              <div class="content-block-title">INGRESAR DATOS FORMULARIO</div>                     
+                    <form style="margin-left:16px;margin-right:16px;">
+                      <div id="blkPreguntasForm">
+                      </div>
+                      <hr>
+                      <!-- <p><a href="#" id="btnNuevaPreguntaForm" class="button button-fill">AGREGAR PREGUNTA</a></p>-->
+                      <p><a href="#" id="btnCancelarForm" class="button button-fill color-red">CANCELAR</a></p>
+                      <p class="buttons-row"><button id="btnPreviaForm" type="submit" class="button button-fill color-green"> GENERAR VISTA PREVIA</button></p>
+                    </form>
+            </div>
+          </div>
+
+          <div class="page cached" data-page="empresario-formulario-previa">
+            <div class="navbar">
+              <div class="navbar-inner bg-blue">
+                 <div class="left">
+                     <a href="#" class="back link">
+                          <i class="icon icon-back"></i>
+                     </a>
+                 Nueva Convocatoria
+                 </div>
+              </div>
+            </div>
+            <!-- Scrollable page content -->
+            <script id="preguntaVistaPreviaT7" type="text/template7">         
+                <p class="item-content">
+                  <div class="item-inner">
+                    <b>Empresa: {{nombre_empresa}}</b>
+                  </div>
+                </p>
+                <p class="item-content">
+                  <div class="item-inner">
+                    <b>Convocatoria: {{titulo_convocatoria}}</b>
+                  </div>
+                </p>
+                {{#each bloques}}
+                <div data-id="{{id}}" style="padding-bottom: 20px;">
+                      <div class="item-title label-categoria-pregunta">{{nombre}}</div>
+                      <div class="list-block inputs-list margin-0">
+                        <ul>
+                           {{#each preguntas}}
+                              <li class="pregunta card">
+                                      <div class="card-content padding-10">                            
+                                        <label class="label">{{../rotulo}} N° {{n}}</label>
+                                        <div>{{nombre_pregunta}}</div>
+                                      </div>
+                                      <div class="card-footer">
+                                          {{#js_if 'this.es_salario == false'}}
+                                           <ul>
+                                            {{#each opciones}}                                  
+                                                <li>
+                                                  <label class="label-radio item-content">
+                                                          <!-- Checked by default -->
+                                                          <input type="radio" name="opcion_{{../../id}}_{{../n}}">
+                                                          <div class="item-media">
+                                                            <i class="icon icon-form-radio"></i>
+                                                          </div>
+                                                          <div class="item-inner">
+                                                            <div class="item-title">{{descripcion}}  <b>({{valor}})</b></div>
+                                                          </div>
+                                                 </label>
+                                                </li>
+                                            {{/each}}
+                                            </ul>
+                                          {{else}}
+                                             <div class="item-input">
+                                                      <input type="number" placeholder="Salario a percibir">
+                                             </div>
+                                          {{/js_if}}
+                                      </div>
+                             </li>
+                            {{/each}}
+                        </ul>
+                      </div>                      
+               </div>
+              {{/each}}
+            </script>
+            <div class="page-content">                        
+              <div class="content-block-title">VISTA PREVIA FORMULARIO CV</div>     
+                     <div id="blkConvocatoriaVP" style="margin-left:16px;margin-right:16px;">
+                      </div>
+                      <p class="buttons-row">
+                        <button id="btnGuardarVP" class="button button-fill color-green"> GUARDAR CONVOCATORIA</button>
+                      </p>
+            </div>
+          </div>
+          <div class="page cached" data-page="empresario-gestionar-convocatoria">
+            <div class="navbar">
+              <div class="navbar-inner bg-blue">
+                 <div class="left">
+                     <a href="#" class="open-panel link">
+                          <i class="icon icon-bars"></i>
+                     </a>
+                 Gestionar Convocatoria
+                 </div>
+              </div>
+            </div>
+            <!-- Scrollable page content -->
+            <div class="page-content">             
+              <div class="content-block-title">DATOS DE CONVOCATORIA</div>             
+              <div class="list-block inset">
+                    <form>
+                    <ul>
+                      <li>
+                        <div class="item-content">
+                              <div class="item-inner">
+                                <div class="item-title label">Título</div>
+                                <div class="item-input">
+                                   <textarea type="text" name="txttitulo" required id="txttituloconv" placeholder="Título"></textarea>
+                                </div>
+                              </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="item-content">
+                              <div class="item-inner">
+                                <div class="item-title label">Descripción convocatoria</div>
+                                <div class="item-input">
+                                   <textarea type="text" required name="txtdescripcion" id="txtdescripcionconv" placeholder="Descripción convocatoria"></textarea>
+                                </div>
+                              </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="item-content">
+                              <div class="item-inner">
+                                <div class="item-title label">Carrera</div>
+                                <div class="item-input">
+                                   <select name="txtcarrera" required id="txtcarreraconv"></select>
+                                </div>
+                              </div>
+                        </div>
+                      </li>
+                      <div class="item-content">
+                          <div class="item-inner">
+                            <div class="item-title label">Fecha de Lanzamiento</div>
+                            <div class="item-input">
+                               <input type="date" name="txtfechalanzamiento" required placeholder="Fecha lanzamiento"  id="txtfechalanzamiento">
+                            </div>
+                          </div>
+                          <div class="item-media"><i class="icon f7-icons">calendar</i></div>
+                      </div>
+                      <div class="item-content">
+                          <div class="item-inner">
+                            <div class="item-title label">Fecha de Vencimiento</div>
+                            <div class="item-input">
+                               <input type="date" name="txtfechavencimiento" required placeholder="Fecha vencimiento"  id="txtfechavencimiento">
+                            </div>
+                          </div>
+                          <div class="item-media"><i class="icon f7-icons">calendar</i></div>
+                      </div>
+                      <li>
+                        <div class="item-content">
+                              <div class="item-inner">
+                                <div class="item-title label">Direccion</div>
+                                <div class="item-input">
+                                   <input required type="text" name="txtdireccion" id="txtdireccionconv" placeholder="Dirección">
+                                </div>
+                              </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="item-content">
+                              <div class="item-inner">
+                                <div class="item-title label">Región</div>
+                                <div class="item-input">
+                                  <select required name="txtregion" id="txtregionconv"></select>
+                                </div>
+                              </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="item-content">
+                              <div class="item-inner">
+                                <div class="item-title label">Provincia</div>
+                                <div class="item-input">
+                                  <select required name="txtprovincia" id="txtprovinciaconv"><option value="">Provincia</option> </select>
+                                </div>
+                              </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="item-content">
+                              <div class="item-inner">
+                                <div class="item-title label">Distrito</div>
+                                <div class="item-input">
+                                  <select required name="txtdistrito" id="txtdistritoconv"><option value="">Distrito</option></select>
+                                </div>
+                              </div>
+                        </div>
+                      </li>                        
+                    </ul>
+                    <p class="buttons-row">
+                      <button id="btnCancelarConv" class="button button-fill color-red">CANCELAR</button>
+                      <button id="btnSiguienteConv1" class="button button-fill color-green">SIGUIENTE</button>
+                    </p>
+                    </form>
+                </div>
+            </div>
+          </div>
+
+          <div class="page cached" data-page="empresario-mis-convocatorias">
+            <div class="navbar">
+              <div class="navbar-inner bg-blue">
+                 <div class="left">
+                     <a href="#" class="open-panel link">
+                       <i class="icon icon-bars"></i>
+                     </a>
+                 Mis Convocatorias
+                 </div>
+              </div>
+            </div>
+
+            <form class="searchbar">
+                <div class="searchbar-input">
+                    <input type="search" placeholder="Buscar por título">
+                    <a href="#" class="searchbar-clear"></a>
+                </div>
+                <a href="#" class="searchbar-cancel">Cancel</a>
+            </form>
+            
+            <!-- Search Bar overlay-->
+            <div class="searchbar-overlay"></div>
+
+            <div class="page-content">
+                <a href="" id="refhelper" style="display:none"></a>
+                <div class="content-block-title">LISTA CONVOCATORIAS</div>                 
+                <div class="list-block media-list">
+                  <ul id="blkConvocatoriasMisConvocatorias">
+                    <script id="convocatoriaMisConvocatoriaT7" type="text/template7">
+                          <li class="item-divider">Resultados: </li>
+                          {{#each this}}
+                          <li data-info='{"id":"{{codigo}}","t":"{{titulo}}","i":"{{iniciado}}"}'>
+                            <div class="item-content">
+                              <div class="item-inner">
+                                <div class="item-title-row">
+                                  <div class="item-description" style="display:none">{{descripcion}}</div>
+                                  <div class="item-title"><b>{{titulo}}</b></div>
+                                  <!-- 
+                                  <div class="item-after">
+                                    <a href="#empresario-gestionar-convocatoria?cv={{codigo}}" class="button button-small button-fill color-{{#js_if 'this.iniciado == true'}}amber">EDITAR{{else}}lightblue">VER{{/js_if}}</a>
+                                    <button class="button button-small button-fill color-red btn-retirarse">ELIMINAR</button>
+                                    <a href="#empresario-convocatoria-postulantes?cv={{codigo}}" class="button button-small button-fill color-green btn-postulantes">POSTULANTES</a>
+                                  </div>  
+                                  <div class="item-after">
+                                    <a href="#estudiante-ver-empresa?ce={{codigo}}" class="button button-small button-fill color-lightblue">VER</a>
+                                    <button class="button button-small button-fill color-green btn-postulantes">POSTULANTES</button>
+                                  </div>
+                                  -->
+                                </div>
+                                <div class="item-subtitle"><small>{{carrera}}</small></div>
+                                <div class="item-text"><small>Fecha Lanzamiento: {{fecha_lanzamiento}}</small></div>
+                                <div class="item-text"><small>Fecha Vencimiento: {{fecha_vencimiento}}</small></div>
+                              </div>
+                            </div>
+                          </li>
+                          {{else}}
+                          <li class="item-content"><i>Sin convocatorias registradas aún.</i></li>
+                          {{/each}}                      
+                    </script> 
+                  </ul>
+                </div>
+                <div class="content-block searchbar-not-found">
+                     <div class="item-content"><i>Sin resultados encontrados.</i></div>
+                </div>   
+          </div>
+        </div>
+
+          <div class="page cached" data-page="empresario-postulante-formulario">
+            <div class="navbar">
+              <div class="navbar-inner bg-blue">
+                 <div class="left">
+                     <a href="#" class="back link">
+                          <i class="icon icon-back"></i>
+                     </a>
+                 Postulante Formulario
+                 </div>
+              </div>
+            </div>
+            <!-- Scrollable page content -->
+            <div class="page-content">    
+              <div class="content-block-title">INFORMACIÓN POSTULANTE</div>     
+              <div class="list-block accordion-list">
+                <ul id="blkPostulantePF">
+                  <script id="postulantePFT7" type="text/template7">
+                    <li class="accordion-item">
+                      <a href="#" class="item-content item-link">
+                        <div class="item-inner">
+                          <div class="item-title">{{nombre_estudiante}} <small>(Click para ver)</small></div>
+                        </div>
+                      </a>
+                      <div class="accordion-item-content">
+                        <div class="list-block">
+                            <ul>
+                              <li class="item-content">
+                                <div class="item-inner">
+                                  <div class="item-title">Imagen Perfil</div>
+                                  <img src="{{img_host}}{{img_perfil}}" style="width: 10em;"/>
+                                </div>
+                              </li>
+                              <li class="item-content">
+                                <div class="item-inner">
+                                  <div class="item-title">Cod. Universitario</div>
+                                  <div class="item-text">{{codigo_universitario}}</div>
+                                </div>
+                              </li>
+                              <li class="item-content">
+                                <div class="item-inner">
+                                  <div class="item-title">Carrera</div>
+                                  <div class="item-text">{{carrera}}</div>
+                                </div>
+                              </li>
+                              <li class="item-content">
+                                <div class="item-inner">
+                                  <div class="item-title">Universidad</div>
+                                  <div class="item-text">{{universidad}}</div>
+                                </div>
+                              </li>
+                              <li class="item-content">
+                                <div class="item-inner">
+                                  <div class="item-title">Correo</div>
+                                  <div class="item-text">{{correo}}</div>
+                                </div>
+                              </li>
+                              <li class="item-content">
+                                <div class="item-inner">
+                                  <div class="item-title">Celular</div>
+                                  <div class="item-text">{{celular}}</div>
+                                </div>
+                              </li>
+                              <li class="item-content">
+                                <div class="item-inner">
+                                  <div class="item-title">Edad y Género</div>
+                                  <div class="item-text">{{#js_if 'this.edad > 0'}} {{edad}} años {{else}} Sin edad registrada {{/js_if}} - {{sexo}}</div>
+                                </div>
+                              </li>
+                              <li class="item-content">
+                                <div class="item-inner">
+                                  <div class="item-title">Domicilio</div>
+                                  <div class="item-text">{{direccion}} - {{distrito}}</div>
+                                </div>
+                              </li>
+                            </ul>
+                         </div>
+                      </div>
+                    </li>
+                  </script>
+                </ul>
+              </div>        
+              <div class="content-block-title">FORMULARIO POSTULANTE</div>   
+              <div class="list-block inset">
+                <form>
+                  <div id="blkFormularioPF">
+                  </div>
+                  <hr>
+                  <p id="lblRank" class="align-center"></p>    
+                   <p><a href="#" id="btnPreseleccionar" class="button button-fill hide">PRESELECCIONAR</a></p>
+                   <p><a href="#" id="lblPreseleccionado" class="button button-fill  color-green hide">ESTUDIANTE PRESELECCIONADO</a></p>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <div class="page cached" data-page="empresario-ver-convocatoria">
+          <!-- Top Navbar. In Material theme it should be inside of the page-->
+            <div class="navbar">
+              <div class="navbar-inner bg-blue">
+                 <div class="left">
+                     <a href="#" class="link back">
+                       <i class="icon icon-back"></i>
+                     </a>
+                Ver Convocatoria
+                 </div>
+              </div>
+            </div>
+
+            <!-- Scrollable page content -->
+            <div class="page-content">     
+              <div id="blkVerConvocatoria"></div>
+              <script id="convocatoriaVerConvocatoriaT7" type="text/template7">
+                <!-- <div class="content-block-title"><b>Empresa: {{nombre_empresa}}</b></div> --> 
+                <div class="list-block">
+                <ul>
+                <!--
+                  <li>
+                    <div class="item-content">
+                      <div class="item-inner">
+                        <div class="item-title label">Descripción </div>
+                        <p>{{descripcion_empresa}}</p>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="item-divider">Sobre la Convocatoria</li>
+                  -->
+                  <li>
+                    <div class="item-content">
+                      <div class="item-inner">
+                        <div class="item-title label">Titulo</div>
+                        <p>{{titulo}}</p>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="item-content">
+                      <div class="item-inner">
+                        <div class="item-title label">Descripción</div>
+                        <p>{{descripcion_aviso}}</p>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="item-content">
+                      <div class="item-inner">
+                        <div class="item-title label">Carrera Profesional </div>
+                        <p>{{carrera}}</p>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="item-content">
+                      <div class="item-inner">
+                        <div class="item-title label">Dirección Convocatoria </div>
+                        <p>{{domicilio_aviso}}</p>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="item-content">
+                      <div class="item-inner">
+                        <div class="item-title label">Región </div>
+                        <p>{{region}}</p>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="item-content">
+                      <div class="item-inner">
+                        <div class="item-title label">Provincia </div>
+                        <p>{{provincia}}</p>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="item-content">
+                      <div class="item-inner">
+                        <div class="item-title label">Distrito </div>
+                        <p>{{distrito}}</p>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="item-content">
+                      <div class="item-inner">
+                        <div class="item-title label">Fechas</div>
+                        <p>Desde {{fecha_lanzamiento}} <br> Hasta {{fecha_vencimiento}}</p>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+               </div>
+              </script>      
+              <div class="list-block inset">
+                <p class="buttons-row">
+                  <button id="btnSiguienteVerConvocatoria" class="button color-blue button-fill">VER FORMULARIO</button>
+                </p>
+              </div>       
+          </div>
+        </div>
+
+          <div class="page cached" data-page="estudiante-buscar-aviso">
+            <div class="navbar">
+              <div class="navbar-inner bg-blue">
+                  <div class="left">
+                     <a href="#" class="open-panel link">
+                       <i class="icon icon-bars"></i>
+                     </a>
+                 Buscar Convocatorias
+                 </div>
+              </div>
+            </div>
+
+            <div class="page-content">
+                <div class="list-block inset">
+                  <form>
+                    <ul>
+                      <li>
+                        <div class="item-content">
+                          <div class="item-inner">
+                            <div class="item-input">
+                                <input type="text" name="txtbuscar" id="txtconvocatoriabuscar" placeholder="Descripción a buscar...">
+                            </div>
+                          </div>
+                          <div class="item-media"><i class="icon f7-icons">search_strong</i></div>
+                          <ul id="blkontologia" class="ontologia"></ul>
+                        </div>
+                      </li>
+                      <li class="row">
+                          <div class="col-50">
+                             <div class="item-content">
+                                <div class="item-inner">
+                                  <div class="item-input">
+                                     <input type="date" name="txtfechai" placeholder="Fechas desde..." id="txtfechaibuscar">
+                                  </div>
+                                </div>
+                                <div class="item-media"><i class="icon f7-icons">calendar</i></div>
+                              </div>
+                          </div>
+                          <div class="col-50">
+                             <div class="item-content">
+                              <div class="item-inner">
+                                <div class="item-input">
+                                   <input type="date" name="txtfechaf" placeholder="Fechas hasta..." id="txtfechafbuscar">
+                                </div>
+                              </div>
+                              <div class="item-media"><i class="icon f7-icons">calendar</i></div>
+                            </div>
+                          </div>
+                      </li>
+                      <li>
+                          <div class="item-content">
+                                <div class="item-inner">
+                                  <!-- <div class="item-title">Carrera</div>-->
+                                    <div class="item-input">
+                                      <select  id="txtcarrerabuscar" name="txtcarrera">
+                                        <option value="">Seleccionar carrera</option>
+                                      </select>
+                                    </div>
+                                </div>
+                          </div>
+                      </li>
+                      <li>
+                              <label class="label-checkbox item-content">
+                                <!-- Checked by default -->
+                                <input type="checkbox" name="chkvigencia" value="1" id="chkvigenciabuscar">
+                                <div class="item-media">
+                                  <i class="icon icon-form-checkbox"></i>
+                                </div>
+                                <div class="item-inner" style="padding-top: 15px;margin-left: 0px;">
+                                  <div class="item-title">SOLO VIGENTES</div>
+                                </div>
+                              </label>
+                      </li>
+                    </ul>
+                  </form>
+                </div>
+
+                <div class="list-block media-list">
+                  <ul id="blkEmpresasBuscarAviso">                       
+                    <script id="empresasBuscarAvisoT7" type="text/template7">
+                      <li class="item-divider">Resultados: </li>
+                          {{#each this}}
+                          <li>
+                            <div class="item-content">
+                              <div class="item-inner">
+                                <div class="item-title-row">
+                                  <div class="item-title"><b>{{empresa}}</b></div>
+                                  <div class="item-after">
+                                    <a href="#estudiante-ver-convocatoria?ce={{codigo}}" class="button button-small button-fill color-lightblue">VER</a>
+                                  </div>
+                                </div>
+                                <div class="item-subtitle"><small>Título: {{titulo}}</small></div>
+                                <div class="item-text"><small><i>Fecha Lanzamiento: {{fecha_lanzamiento}}</i></small></div>
+                                <div class="item-text">
+                                  <div class="chip  bg-{{estado_color}} chip-small color-white">
+                                    <div class="chip-label">{{estado_rotulo}}</div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </li>
+                        {{else}}                         
+                          <li class="item-content"><i>Sin resultados encontrados.</i></li>
+                        {{/each}}                      
+                    </script> 
+                  </ul>
+                </div>
+          </div>
+        </div>
+
+          <div class="page cached" data-page="estudiante-convocatoria-formulario">
+            <div class="navbar">
+              <div class="navbar-inner bg-blue">
+                 <div class="left">
+                     <a href="#" class="back link">
+                          <i class="icon icon-back"></i>
+                     </a>
+                 Postular Convocatoria
+                 </div>
+              </div>
+            </div>
+            <!-- Scrollable page content -->
+            <script id="preguntasConvocatoriaFormularioT7" type="text/template7">         
+                {{#nombre_empresa}}
+                  <div class="item-inner">
+                    <b>Empresa: {{this}}</b>
+                  </div>
+                {{/nombre_empresa}}
+                    <b>Convocatoria: {{titulo_convocatoria}}</b>
+                  </div>
+                  <br><br>                  
+                {{#each bloques}}
+                <div data-id="{{id}}" style="padding-bottom: 20px;">
+                      <div class="item-title label-categoria-pregunta">{{nombre}}</div>
+                      <div class="list-block inputs-list margin-0">
+                        <ul>
+                          {{#each preguntas}}
+                                <li class="pregunta card" data-id="{{cod_pregunta}}">
+                                          <div class="card-content ">     
+                                            <div class="card-content-inner">     
+                                              <label class="label">{{../rotulo}} N° {{item}}</label>
+                                              <div>{{nombre_pregunta}}</div>
+                                            </div>
+                                          </div>
+                                          <div class="card-footer">
+                                              {{#js_if 'this.categoria_pregunta != 4'}}
+                                              <ul>
+                                                {{#each opciones}}                                  
+                                                 <li>
+                                                   <label class="label-radio item-content" disabled>
+                                                    <input type="radio" value="{{cod_opcion}}" name="o_{{../categoria_pregunta}}_{{../cod_pregunta}}">
+                                                    <div class="item-media">
+                                                       <i class="icon icon-form-radio"></i>
+                                                     </div>
+                                                     <div class="item-inner">
+                                                       <div class="item-title">{{rotulo}} </div>
+                                                     </div>
+                                                  </label>
+                                                 </li>
+                                                {{/each}}
+                                                {{#js_if 'this.categoria_pregunta < 3'}}
+                                                  <li class="blk-archivos">
+                                                    <input  id="file_{{../categoria_pregunta}}_{{../cod_pregunta}}" class="file-escondido" type="file">
+                                                    <button class="bg-red button button-fill button-raised button-small _archivos" type="button">
+                                                        Cargar archivo
+                                                    </button>
+                                                    <a style="font-size: .8em;margin: 0;" class="titulo-archivo hide">
+                                                        Nombre del archivo
+                                                    </a>
+                                                    <!-- <input id="file_{{../categoria_pregunta}}_{{../cod_pregunta}}" class="_archivos" type="file">-->
+                                                    <a href="javascript:;" class="archivos quitar hide" title="Quitar archivo"><i class="icon f7-icons">close</i></a>
+                                                  </li>                                             
+
+                                                    {{#js_if 'this.nombre_archivo != null'}}
+                                                        <li class="blk-archivos-read" style="font-size:.7em">
+                                                        <p style="margin:0">Archivos cargados: </p>
+                                                        <a  href="javascript:;" data-url="{{url_archivo}}" title="Descargar"  class="descargar-archivo">
+                                                            <i class="icon f7-icons"  style="font-size:1em">download</i> {{nombre_archivo}}</a>
+                                                      </li>
+                                                    {{/js_if}}
+                                                {{/js_if}}
+                                              </ul>
+                                              {{else}}
+                                                 <div class="item-input">
+                                                  <input name="o_{{../categoria_pregunta}}_{{../cod_pregunta}}" disabled type="number" placeholder="Salario a percibir (SOLES)" value="{{vt}}">
+                                                 </div>
+                                            {{/js_if}}
+                                          </div>
+                                 </li>
+                          {{/each}}
+                       </ul>
+                      </div>                      
+               </div>
+              {{/each}}
+            </script>
+            <div class="page-content">                        
+              <div class="content-block-title">INGRESAR SUS DATOS. POR CADA PREGUNTA DEBE MARCAR SOLO UNA OPCIÓN.</div>     
+              <div class="list-block inset">
+                <form>
+                      <div id="blkFormularioFC">
+                      </div>
+                      <p class="buttons-row">
+                        <button id="btnGuardarFC" type="submit" class="button button-fill color-green"> ENVIAR FORMULARIO</button>
+                      </p>
+                </form>
+                </div>
+            </div>
+          </div>
+
+          <div class="page cached" data-page="estudiante-cuenta-nueva">
+          <!-- Top Navbar. In Material theme it should be inside of the page-->
+              <div class="navbar">
+                <div class="navbar-inner bg-blue">
+                   <div class="left">
+                       <a href="#" class="link open-login-screen">
+                            <i class="icon icon-back"></i>
+                       </a>
+                   Cuenta Nueva
+                   </div>
+                </div>
+              </div>
+
+            <!-- Scrollable page content -->
+            <div class="page-content">
+                <form class="list-block inset">
+                <ul>
+                  <!-- Text inputs -->
+                  <li>
+                        <div class="item-content">
+                          <div class="item-inner">
+                            <div class="item-title floating-label">Correo electrónico</div>
+                            <div class="item-input">
+                              <input type="email" name="txtemail" id="txtemail_es" required placeholder="Correo electrónico">
+                            </div>
+                          </div>
+                        </div>
+                  </li>
+                  <li>
+                        <div class="item-content">
+                          <div class="item-inner">
+                            <div class="item-title floating-label">DNI</div>
+                            <div class="item-input">
+                              <input type="text" name="txtdni" id="txtdni_es" placeholder="DNI"  required maxlength="8">
+                            </div>
+                          </div>
+                        </div>
+                  </li>
+                  <li>
+                        <div class="item-content">
+                          <div class="item-inner">
+                            <div class="item-title floating-label">Código Universitario</div>
+                            <div class="item-input">
+                              <input type="text" name="txtcodigouniversitario" id="txtcodigouniversitario_es" placeholder="DNI"  required maxlength="10">
+                            </div>
+                          </div>
+                        </div>
+                  </li>
+                  <li>
+                        <div class="item-content">
+                          <div class="item-inner">
+                            <div class="item-title floating-label">Apellidos</div>
+                            <div class="item-input">
+                              <input type="text" name="txtapellidos" id="txtapellidos_es" required placeholder="Apellidos">
+                            </div>
+                          </div>
+                        </div>
+                  </li>
+                  <li>
+                        <div class="item-content">
+                          <div class="item-inner">
+                            <div class="item-title floating-label">Nombres</div>
+                            <div class="item-input">
+                              <input type="text" name="txtnombres" id="txtnombres_es" required placeholder="Nombres">
+                            </div>
+                          </div>
+                        </div>
+                  </li>
+                  <li>
+                        <div class="item-content">
+                          <div class="item-inner">
+                            <!-- <div class="item-title">Carrera</div>-->
+                            <div class="item-input">
+                              <select required id="txtcarrera_es" name="txtcarrera">
+                                <option value="">Seleccionar carrera</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                  </li>
+                  <li>
+                        <div class="item-content">
+                          <div class="item-inner">
+                            <!-- <div class="item-title">Carrera</div>-->
+                            <div class="item-input">
+                              <select required id="txtuniversidad_es" name="txtuniversidad">
+                                <option value="">Seleccionar universidad</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                  </li>
+                  <li>
+                        <div class="item-content">
+                          <div class="item-inner">
+                            <div class="item-title floating-label">Password</div>
+                            <div class="item-input">
+                              <input type="password" name="txtpassword" id="txtpassword_es" required placeholder="Password">
+                            </div>
+                          </div>
+                        </div>
+                  </li>
+                  <li>
+                        <div class="item-content">
+                          <div class="item-inner">
+                            <div class="item-title floating-label">Repetir Password</div>
+                            <div class="item-input">
+                              <input type="password" name="txtrepetirpassword" id="txtrepetirpassword_es" required placeholder="Repetir Password">
+                            </div>
+                          </div>
+                        </div>
+                  </li>
+                  <li class="item-content input-error" style="display:none" id="spnNuevaCuentaError_es"><small>Las claves deben coincidir</small></li>
+                </ul>
+                <p class="buttons-row"><button type="submit" id="btnGuardarNuevaCuenta_es" class="button button-fill color-blue button-big">GUARDAR</button></p>
+                </form>
+            </div>
+          </div>
+
+          <div class="page cached" data-page="estudiante-datos-personales">
+          <!-- Top Navbar. In Material theme it should be inside of the page-->
+              <div class="navbar">
+                <div class="navbar-inner bg-blue">
+                   <div class="left">
+                       <a href="#" class="open-panel link">
+                         <i class="icon icon-bars"></i>
+                       </a>
+                   Datos Personales
+                   </div>
+                </div>
+              </div>
+
+            <!-- Scrollable page content -->
+            <div class="page-content">
+                <div class="list-block inset">
+                  <form>
+                    <ul>
+                      <li>
+                         <div class="item-content">
+                              <div class="item-inner align-center">
+                                <div class="item-title label">Imagen Perfil</div>
+                                <img id="imgperfil" style="width: 90%;padding: .25em;max-width:400px" src="img/perfil-def.jpg">
+                                <a href="#" id="btnEditarPerfil" class="button button-fill button-small color-lightblue margin-auto">Cambiar Imagen</a>
+                                <input style="display:none" name="txtperfil" type="file" id="txtperfil">
+                              </div>
+                          </div>
+                      </li>
+                      <li>
+                        <div class="item-content">
+                              <div class="item-inner">
+                                <div class="item-title label">Apellidos</div>
+                                <div class="item-input">
+                                   <input type="text" name="txtapellidos" id="txtapellidosdatos_es" placeholder="Apellidos">
+                                </div>
+                              </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="item-content">
+                              <div class="item-inner">
+                                <div class="item-title label">Nombres</div>
+                                <div class="item-input">
+                                   <input type="text" name="txtnombres" id="txtnombresdatos_es" placeholder="Nombres">
+                                </div>
+                              </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="item-content">
+                          <div class="item-inner">
+                            <div class="item-input">
+                               <input type="date" name="txtfechanacimiento" placeholder="Fecha nacimiento"  id="txtfechanacimiento">
+                            </div>
+                          </div>
+                          <div class="item-media"><i class="icon f7-icons">calendar</i></div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="item-content">
+                              <div class="item-inner">
+                                <div class="item-title label">Domicilio Actual</div>
+                                <div class="item-input">
+                                   <input type="text" name="txtdomicilio" id="txtdomicilio" placeholder="Domicilio Actual">
+                                </div>
+                              </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="item-content">
+                              <div class="item-inner">
+                                <div class="item-title label">Región</div>
+                                <div class="item-input">
+                                  <select  name="txtregion" id="txtregion"></select>
+                                </div>
+                              </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="item-content">
+                              <div class="item-inner">
+                                <div class="item-title label">Provincia</div>
+                                <div class="item-input">
+                                  <select  name="txtprovincia" id="txtprovincia"></select>
+                                </div>
+                              </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="item-content">
+                              <div class="item-inner">
+                                <div class="item-title label">Distrito</div>
+                                <div class="item-input">
+                                  <select  name="txtdistrito" id="txtdistrito"></select>
+                                </div>
+                              </div>
+                        </div>
+                      </li>
+                      <li class="row">
+                          <div class="col-50">
+                             <div class="item-content">
+                              <div class="item-inner">
+                                <div class="item-title label">Celular</div>
+                                <div class="item-input">
+                                   <input type="text" name="txtcelular" id="txtcelular" placeholder="Celular">
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-50">
+                             <div class="item-content">
+                              <div class="item-inner">
+                                <div class="item-title label">Género</div>
+                                <div class="item-input">
+                                  <select name="txtgenero" id="txtgenero">
+                                    <option value="M">Masculino</option>
+                                    <option value="F">Femenino</option>
+                                  </select>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                      </li>
+                      <li>
+                        <div class="item-content">
+                          <div class="item-inner">
+                                <div class="item-title label">Carrera Universitaria</div>
+                                <div class="item-input">
+                                  <select name="txtcarrerauniversitaria" id="txtcarrerauniversitaria">
+                                  </select>
+                                </div>
+                              </div>
+                        </div>
+                      </li>
+                    </ul>
+                    <p class="buttons-row"><button type="submit" id="btnGuardarDatos_es" class="button button-fill color-blue button-big">GUARDAR</button></p>
+                  </form>
+                </div>
+            </div>
+      </div>
+          <div class="page cached" data-page="estudiante-mis-postulaciones">
+            <div class="navbar">
+              <div class="navbar-inner bg-blue">
+                 <div class="left">
+                     <a href="#" class="open-panel link">
+                          <i class="icon icon-bars"></i>
+                     </a>
+                 Mis Postulaciones
+                 </div>
+              </div>
+            </div>
+            <!-- Scrollable page content -->
+            <div class="page-content">
+             <div class="content-block-title" id="blkResumenMisPostulaciones">             
+             </div>
+             <div class="list-block  media-list">  
+                 <ul id="blkPostulacionesMisPostulaciones">
+                  <script id="postulacionesMisPostulacionesT7" type="text/template7">
+                    {{#each this}}
+                    <li class="item-content">
+                        <div class="item-inner">
+                          <div class="item-title-row">
+                            <div class="item-title"><b>{{nombre_empresa}}</b></div>
+                            <div class="item-after">
+                                <a href="#estudiante-ver-convocatoria?ce={{cod_aviso_laboral}}" class="button button-small button-fill color-lightblue">VER</a>
+                                {{#js_if '!this.vencido || this.estado == "P"'}}
+                                  <button data-id={{cod_aviso_laboral}} class="button button-small button-fill color-red btn-retirarse">RETIRARSE</button>
+                                {{/js_if}}
+                            </div>                           
+                          </div>
+                          <div class="item-text">
+                            <div class="chip  bg-{{estado_color}} chip-small color-white">
+                              <div class="chip-label">{{estado_rotulo}}</div>
+                            </div>
+                          </div>
+                          <div class="item-subtitle">Postulado: <i>{{fecha_postulacion}}</i></div>
+                          <div class="item-text">
+                            {{titulo}}
+                          </div>
+                        </div>
+                    </li> 
+                    {{else}}
+                      <li class="item-content"><i>Sin postulaciones.</i></li>
+                    {{/each}}
+                  </script>                    
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="page cached" data-page="estudiante-ver-convocatoria">
+          <!-- Top Navbar. In Material theme it should be inside of the page-->
+            <div class="navbar">
+              <div class="navbar-inner bg-blue">
+                 <div class="left">
+                     <a href="#" class="link back">
+                       <i class="icon icon-back"></i>
+                     </a>
+                Ver Convocatoria
+                 </div>
+              </div>
+            </div>
+
+            <!-- Scrollable page content -->
+            <div class="page-content">     
+            <!--
+              <div class="list-block inset align-center">
+                  <div class="chip bg-blue buttons-row color-white hide"  id="btnPostuladoVerEmpresa" >
+                    <div class="chip-label" style="width:100%">VER MI FORMULARIO</div>
+                  </div>
+              </div>         
+            -->
+              <div id="blkVerEmpresa"></div>
+              <script id="empresaVerEmpresaT7" type="text/template7">
+                <div class="content-block-title"><b>Empresa: {{nombre_empresa}}</b></div>
+                <div class="list-block">
+                <ul>
+                  <li>
+                    <div class="item-content">
+                      <div class="item-inner">
+                        <div class="item-title label">Descripción </div>
+                        <p>{{descripcion_empresa}}</p>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="item-divider">Sobre la Convocatoria</li>
+                  <li>
+                    <div class="item-content">
+                      <div class="item-inner">
+                        <div class="item-title label">Titulo</div>
+                        <p>{{titulo}}</p>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="item-content">
+                      <div class="item-inner">
+                        <div class="item-title label">Descripción</div>
+                        <p>{{descripcion_aviso}}</p>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="item-content">
+                      <div class="item-inner">
+                        <div class="item-title label">Carrera Profesional </div>
+                        <p>{{carrera}}</p>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="item-content">
+                      <div class="item-inner">
+                        <div class="item-title label">Dirección Convocatoria </div>
+                        <p>{{domicilio_aviso}}</p>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="item-content">
+                      <div class="item-inner">
+                        <div class="item-title label">Región </div>
+                        <p>{{region}}</p>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="item-content">
+                      <div class="item-inner">
+                        <div class="item-title label">Provincia </div>
+                        <p>{{provincia}}</p>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="item-content">
+                      <div class="item-inner">
+                        <div class="item-title label">Distrito </div>
+                        <p>{{distrito}}</p>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="item-content">
+                      <div class="item-inner">
+                        <div class="item-title label">Fechas</div>
+                        <p>Desde {{fecha_lanzamiento}} <br> Hasta {{fecha_vencimiento}}</p>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+               </div>
+              </script>      
+              <div class="list-block inset">
+                  <p class="buttons-row"><button id="btnPostuladoVerEmpresa" class="button color-blue button-fill hide">VER MI FORMULARIO</button></p>
+                  <p class="buttons-row"><button id="btnPostularVerEmpresa" class="button color-green button-fill">POSTULAR</button></p>
+              </div>       
+          </div>
+        </div>
+            </div>
+        </div>
+      </div>
+    </div>
+    <!-- Path to Framework7 Library JS-->
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/framework7.min.js"></script>
+    <script type="text/javascript" src="js/jstorage.min.js"></script>
+    <script type="text/javascript" src="js/Ajxur.js"></script>
+    <!-- <script type="text/javascript" src="js/DBHandler.js"></script> -->
+    <script type="text/javascript" src="js/util.js"></script>
+    <!-- Path to your app js-->        
+    <script type="text/javascript" src="js/app.js"></script> 
+  </body>
+</html> 
