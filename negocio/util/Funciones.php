@@ -412,6 +412,7 @@ class Funciones {
         //Tell PHPMailer to use SMTP
         $mail->isSMTP();
 
+        $mail->Mailer = "smtp";
         //Enable SMTP debugging
         // 0 = off (for production use)
         // 1 = client messages
