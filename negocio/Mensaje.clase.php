@@ -10,7 +10,7 @@ use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
 //Load Composer's autoloader
-require 'phpmailer-composer-/vendor/autoload.php';
+require 'phpmailer-composer/vendor/autoload.php';
 
 class Mensaje {
 
@@ -79,7 +79,6 @@ class Mensaje {
     public function enviarCorreo($tipo){
         //require 'PHPMailer-master/PHPMailerAutoload.php';
         
-     
         switch($tipo){
             case "PRESELECCIONAR":
             return $this->enviarCorreoPreseleccionar();
