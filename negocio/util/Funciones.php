@@ -405,15 +405,14 @@ class Funciones {
 
     public static function enviarCorreo($asunto,$cuerpo,$de,$para){    
         date_default_timezone_set('Etc/UTC');
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
         
-        
+        ini_set('display_errors', 1);
+        ini_set('display_startup_errors', 1);
+        error_reporting(E_ALL);
+ var_dump("pre 1v");
         use PHPMailer\PHPMailer\PHPMailer;
         use PHPMailer\PHPMailer\Exception;
-        use PHPMailer\PHPMailer\SMTP;
-     
+        
         require 'PHPMailer-master/src/Exception.php';
         require 'PHPMailer-master/src/PHPMailer.php';
         require 'PHPMailer-master/src/SMTP.php';
