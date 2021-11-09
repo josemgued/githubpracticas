@@ -407,65 +407,70 @@ class Funciones {
         date_default_timezone_set('Etc/UTC');
 
         //Create a new PHPMailer instance
-        $mail = new PHPMailer;
-        
-        $mail->isSMTP();
+        $mail = new PHPMailer(true);
+        $registros = [];
+        try {
+            $mail->isSMTP();
 
-        //Enable SMTP debugging
-        //SMTP::DEBUG_OFF = off (for production use)
-        //SMTP::DEBUG_CLIENT = client messages
-        //SMTP::DEBUG_SERVER = client and server messages
-        $mail->SMTPDebug = SMTP::DEBUG_SERVER;
+            //Enable SMTP debugging
+            //SMTP::DEBUG_OFF = off (for production use)
+            //SMTP::DEBUG_CLIENT = client messages
+            //SMTP::DEBUG_SERVER = client and server messages
+            $mail->SMTPDebug = SMTP::DEBUG_SERVER;
 
-        //Set the hostname of the mail server
-        $mail->Host = 'smtp.gmail.com';
-        //Use `$mail->Host = gethostbyname('smtp.gmail.com');`
-        //if your network does not support SMTP over IPv6,
-        //though this may cause issues with TLS
+            //Set the hostname of the mail server
+            $mail->Host = 'smtp.gmail.com';
+            //Use `$mail->Host = gethostbyname('smtp.gmail.com');`
+            //if your network does not support SMTP over IPv6,
+            //though this may cause issues with TLS
 
-        //Set the SMTP port number:
-        // - 465 for SMTP with implicit TLS, a.k.a. RFC8314 SMTPS or
-        // - 587 for SMTP+STARTTLS
-        $mail->Port = 465;
+            //Set the SMTP port number:
+            // - 465 for SMTP with implicit TLS, a.k.a. RFC8314 SMTPS or
+            // - 587 for SMTP+STARTTLS
+            $mail->Port = 465;
 
-        //Set the encryption mechanism to use:
-        // - SMTPS (implicit TLS on port 465) or
-        // - STARTTLS (explicit TLS on port 587)
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+            //Set the encryption mechanism to use:
+            // - SMTPS (implicit TLS on port 465) or
+            // - STARTTLS (explicit TLS on port 587)
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
 
-        //Whether to use SMTP authentication
-        $mail->SMTPAuth = true;
+            //Whether to use SMTP authentication
+            $mail->SMTPAuth = true;
 
-        //Username to use for SMTP authentication - use full email address for gmail
-        $mail->Username = "josemgued@gmail.com";
+            //Username to use for SMTP authentication - use full email address for gmail
+            $mail->Username = "josemgued@gmail.com";
 
-        //Password to use for SMTP authentication
-        //$mail->Password = "josing83";
-        $mail->Password = "Compuged161183$$$";
+            //Password to use for SMTP authentication
+            //$mail->Password = "josing83";
+            $mail->Password = "Compuged161183$$$";
 
-        //Set who the message is to be sent from
-        $mail->setFrom($de, 'APPPRACTICAR');
+            //Set who the message is to be sent from
+            $mail->setFrom($de, 'APPPRACTICAR');
 
-        //Set who the message is to be sent to
-        $mail->addAddress(trim($para), 'Usuario');
+            //Set who the message is to be sent to
+            $mail->addAddress(trim($para), 'Usuario');
 
-        //Set the subject line
-        $mail->Subject = $asunto;
+            //Set the subject line
+            $mail->Subject = $asunto;
 
-        //Read an HTML message body from an external file, convert referenced images to embedded,
-        //convert HTML into a basic plain-text alternative body
-        //$mail->msgHTML(file_get_contents('contents.html'), dirname(__FILE__));
-        $mail->msgHTML($cuerpo);
+            //Read an HTML message body from an external file, convert referenced images to embedded,
+            //convert HTML into a basic plain-text alternative body
+            //$mail->msgHTML(file_get_contents('contents.html'), dirname(__FILE__));
+            $mail->msgHTML($cuerpo);
 
-        if (!$mail->send()) {
+            if (!$mail->send()) {
+                $registros["estado"] = 500;  
+                $registros["mensaje"] = "Problema al enviar correo ".$mail->ErrorInfo;  
+            } else {
+                $registros["estado"] = 200;  
+                $registros["mensaje"] = 'Mensaje enviado';
+            }
+
+            return $registros;
+        } catch (Exception $e) {
             $registros["estado"] = 500;  
-            $registros["mensaje"] = "Problema al enviar correo ".$mail->ErrorInfo;  
-        } else {
-            $registros["estado"] = 200;  
-            $registros["mensaje"] = 'Mensaje enviado';
-        }
-
-        return $registros;
+            $registros["mensaje"] = "Problema al enviar correo ".$mail->ErrorInfo;
+        }   
     }
 
 
