@@ -322,9 +322,9 @@ class Persona extends Conexion {
             require 'Mensaje.clase.php';
             $objMensaje = new Mensaje;
             $objMensaje->setPara($persona);     
-            $objMensaje->enviarCorreo("CONFIRMAR_CUENTA");
+            $data = $objMensaje->enviarCorreo("CONFIRMAR_CUENTA");
 
-            return array("rpt"=>true,"msj"=>"Cuenta creada correctamente. Se ha enviado correo de confirmación.");
+            return array("rpt"=>true,"msj"=>"Cuenta creada correctamente. Se ha enviado correo de confirmación.","data"=>$data);
         } catch (Exception $exc) {
             return array("rpt"=>false,"msj"=>$exc->getMessage());
         }
