@@ -407,8 +407,10 @@ class Funciones {
         date_default_timezone_set('Etc/UTC');
 
         //Create a new PHPMailer instance
-        var_dump(PHPMailer);
+  
         $mail = new PHPMailer(true);
+        
+              var_dump($mail);
         $registros = [];
         try {
             $mail->isSMTP();
