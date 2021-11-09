@@ -444,11 +444,6 @@ pages["empresario-convocatoria-postulantes"] = {
 
 	        datos_frm.append("p_array_datos", JSON.stringify(app.formToData(DOM.form)));
 		
-		if (DOM.txtPassword.val() != DOM.txtPasswordRepetir.val()){
-			self.passNoIguales();
-			return;
-		}
-
 	        DOM.btnGuardar[0].disabled = true;
 	        app.showPreloader("Creando cuenta...");
 	       	$$.ajax({
@@ -584,11 +579,6 @@ pages["estudiante-cuenta-nueva"] = {
 
 	        datos_frm.append("p_array_datos", JSON.stringify(app.formToData(DOM.form)));
 		
-		if (DOM.txtPassword.val() != DOM.txtPasswordRepetir.val()){
-			self.passNoIguales();
-			return;
-		}
-
 	        DOM.btnGuardar[0].disabled = true;
 	        app.showPreloader("Creando cuenta...");
 	       	$$.ajax({
