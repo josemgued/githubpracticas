@@ -446,7 +446,7 @@ class Funciones {
             $mail->Password = "Compuged161183$$$";
 
             //Set who the message is to be sent from
-            $mail->setFrom($de, 'APPPRACTICAR');
+            $mail->setFrom('apppractica@gmail.com', 'APPPRACTICAR');
 
             //Set who the message is to be sent to
             $mail->addAddress(trim($para), 'Usuario');
