@@ -428,7 +428,7 @@ class Funciones {
             //Set the SMTP port number:
             // - 465 for SMTP with implicit TLS, a.k.a. RFC8314 SMTPS or
             // - 587 for SMTP+STARTTLS
-            $mail->Port = 465;
+            $mail->Port = 587;
 
             //Set the encryption mechanism to use:
             // - SMTPS (implicit TLS on port 465) or
