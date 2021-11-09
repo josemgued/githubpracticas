@@ -109,7 +109,8 @@ class Mensaje {
                     'No estaremos comunicando vía celular con Ud. lo más pronto posible para continuar con el proceso de selección.<br><br>'.
                     'Muchas gracias.<br>');
 
-        $data = Funciones::enviarCorreo($this->asunto,$this->getMensajeArmado(),$this->empresa,trim($estudiante["correo"]));
+        $mail = new PHPMailer(true);
+        $data = Funciones::enviarCorreo($mail, $this->asunto,$this->getMensajeArmado(),$this->empresa,trim($estudiante["correo"]));
 
         return ["rpt"=>true, "msj"=>"Mensaje enviado","data"=>$data];
         
@@ -126,8 +127,9 @@ class Mensaje {
         $mensaje .= ($tipo_validacion == "ACEPTADO" ? 'Ya' : 'No').' puede hacer uso de nuestra plataforma<br><br>'.
                     'Muchas gracias por su tiempo.<br>';
         $this->setMensaje($mensaje);
-
-        $data = Funciones::enviarCorreo($this->asunto,$this->getMensajeArmado(),$this->empresa,trim($estudiante["correo"]));
+ 
+        $mail = new PHPMailer(true);
+        $data = Funciones::enviarCorreo($mail, $this->asunto,$this->getMensajeArmado(),$this->empresa,trim($estudiante["correo"]));
 
         return ["rpt"=>true, "msj"=>"Mensaje enviado","data"=>$data];
     }   
@@ -157,7 +159,8 @@ class Mensaje {
         $mensaje .= 'Muchas gracias por su tiempo.<br>';
         $this->setMensaje($mensaje);
 
-        $data = Funciones::enviarCorreo($this->asunto,$this->getMensajeArmado(),$this->empresa,trim($persona["correo"]));
+        $mail = new PHPMailer(true);
+        $data = Funciones::enviarCorreo($mail, $this->asunto,$this->getMensajeArmado(),$this->empresa,trim($persona["correo"]));
 
         return ["rpt"=>true, "msj"=>"Mensaje enviado","data"=>$data];
     }   
