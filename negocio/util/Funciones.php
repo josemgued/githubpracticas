@@ -471,6 +471,8 @@ class Funciones {
 
             return $registros;
         } catch (Exception $e) {
+            
+              var_dump($e);
             $registros["estado"] = 500;  
             $registros["mensaje"] = "Problema al enviar correo ".$mail->ErrorInfo;
         }   
