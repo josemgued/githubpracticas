@@ -68,6 +68,10 @@ class Mensaje {
     
     public function enviarCorreo($tipo){
         //require 'PHPMailer-master/PHPMailerAutoload.php';
+        use PHPMailer\PHPMailer\PHPMailer;
+        use PHPMailer\PHPMailer\Exception;
+        use PHPMailer\PHPMailer\SMTP;
+     
         require 'PHPMailer-master/src/Exception.php';
         require 'PHPMailer-master/src/PHPMailer.php';
         require 'PHPMailer-master/src/SMTP.php';
