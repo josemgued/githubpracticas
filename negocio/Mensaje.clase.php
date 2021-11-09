@@ -145,9 +145,9 @@ class Mensaje {
         $mensaje .= 'Muchas gracias por su tiempo.<br>';
         $this->setMensaje($mensaje);
 
-        Funciones::enviarCorreo($this->asunto,$this->getMensajeArmado(),$this->empresa,trim($persona["correo"]));
+        $data = Funciones::enviarCorreo($this->asunto,$this->getMensajeArmado(),$this->empresa,trim($persona["correo"]));
 
-        return ["rpt"=>true, "msj"=>"Mensaje enviado"];
+        return ["rpt"=>true, "msj"=>"Mensaje enviado","data"=>$data];
     }   
 
 }
