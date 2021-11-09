@@ -405,7 +405,7 @@ class Funciones {
             return $registros;
    }*/
 
-    public static function enviarCorreo($mail,$asunto,$cuerpo,$de,$para){    
+    public static function enviarCorreo($mail, $debug, $stmpSecure, $asunto,$cuerpo,$de,$para){    
         date_default_timezone_set('Etc/UTC');
         $registros = [];
         try {
@@ -415,7 +415,7 @@ class Funciones {
             //SMTP::DEBUG_OFF = off (for production use)
             //SMTP::DEBUG_CLIENT = client messages
             //SMTP::DEBUG_SERVER = client and server messages
-            $mail->SMTPDebug = SMTP::DEBUG_SERVER;
+            $mail->SMTPDebug = $debug; 
 
             //Set the hostname of the mail server
             $mail->Host = 'smtp.gmail.com';
@@ -431,7 +431,7 @@ class Funciones {
             //Set the encryption mechanism to use:
             // - SMTPS (implicit TLS on port 465) or
             // - STARTTLS (explicit TLS on port 587)
-            $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+            $mail->SMTPSecure = $stmpSecure; 
 
             //Whether to use SMTP authentication
             $mail->SMTPAuth = true;
