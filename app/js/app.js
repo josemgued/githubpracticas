@@ -520,6 +520,9 @@ pages["estudiante-cuenta-nueva"] = {
 			spnNuevaCuentaError : preDOM.eq(6)
 		};		
 		this.DOM = DOM;
+		
+		
+		console.log(this.DOM);
 	},
 	limpiarFormulario : function(){
 		this.DOM.form[0].reset(); 
