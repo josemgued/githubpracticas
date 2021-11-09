@@ -3,10 +3,6 @@
 require_once 'util/Funciones.php';
 
 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
@@ -109,7 +105,7 @@ class Mensaje {
                     'No estaremos comunicando vía celular con Ud. lo más pronto posible para continuar con el proceso de selección.<br><br>'.
                     'Muchas gracias.<br>');
 
-        $mail = new PHPMailer(true);
+        $mail = new PHPMailer();
         $data = Funciones::enviarCorreo($mail, SMTP::DEBUG_OFF, PHPMailer::ENCRYPTION_STARTTLS, $this->asunto,$this->getMensajeArmado(),$this->empresa,trim($estudiante["correo"]));
 
         return ["rpt"=>true, "msj"=>"Mensaje enviado","data"=>$data];
@@ -128,7 +124,7 @@ class Mensaje {
                     'Muchas gracias por su tiempo.<br>';
         $this->setMensaje($mensaje);
  
-        $mail = new PHPMailer(true);
+        $mail = new PHPMailer();
         $data = Funciones::enviarCorreo($mail, SMTP::DEBUG_OFF, PHPMailer::ENCRYPTION_STARTTLS, $this->asunto,$this->getMensajeArmado(),$this->empresa,trim($estudiante["correo"]));
 
         return ["rpt"=>true, "msj"=>"Mensaje enviado","data"=>$data];
@@ -159,7 +155,7 @@ class Mensaje {
         $mensaje .= 'Muchas gracias por su tiempo.<br>';
         $this->setMensaje($mensaje);
 
-        $mail = new PHPMailer(true);
+        $mail = new PHPMailer();
         $data = Funciones::enviarCorreo($mail, SMTP::DEBUG_OFF, PHPMailer::ENCRYPTION_STARTTLS, $this->asunto,$this->getMensajeArmado(),$this->empresa,trim($persona["correo"]));
 
         return ["rpt"=>true, "msj"=>"Mensaje enviado","data"=>$data];
