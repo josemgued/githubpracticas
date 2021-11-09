@@ -2,6 +2,18 @@
 
 require_once 'util/Funciones.php';
 
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
+//Load Composer's autoloader
+require 'phpmailer-composer/vendor/autoload.php';
+
 class Mensaje {
 
     private $asunto;
