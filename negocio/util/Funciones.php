@@ -405,18 +405,8 @@ class Funciones {
             return $registros;
    }*/
 
-    public static function enviarCorreo($asunto,$cuerpo,$de,$para){    
+    public static function enviarCorreo($mail,$asunto,$cuerpo,$de,$para){    
         date_default_timezone_set('Etc/UTC');
-        
-        
-    
-        //use PHPMailer\PHPMailer\PHPMailer;
-        //use PHPMailer\PHPMailer\Exception;
-        //Create a new PHPMailer instance
-            var_dump("prev");
-        $mail = new PHPMailer(true);
-        
-              var_dump($mail);
         $registros = [];
         try {
             $mail->isSMTP();
