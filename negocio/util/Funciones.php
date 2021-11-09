@@ -415,8 +415,8 @@ class Funciones {
         require 'PHPMailer-master/src/PHPMailer.php';
         require 'PHPMailer-master/src/SMTP.php';
     
-        use PHPMailer\PHPMailer\PHPMailer;
-        use PHPMailer\PHPMailer\Exception;
+        //use PHPMailer\PHPMailer\PHPMailer;
+        //use PHPMailer\PHPMailer\Exception;
         //Create a new PHPMailer instance
             var_dump("prev");
         $mail = new PHPMailer(true);
