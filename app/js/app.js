@@ -516,12 +516,12 @@ pages["estudiante-cuenta-nueva"] = {
 			txtUniversidad : preDOM.eq(2),
 			txtPassword : preDOM.eq(3),
 			txtRepetirPassword : preDOM.eq(4),
-			btnGuardar : preDOM.eq(5),
-			spnNuevaCuentaError : preDOM.eq(6)
+			spnNuevaCuentaError : preDOM.eq(5),
+			btnGuardar : preDOM.eq(6)
 		};		
 		this.DOM = DOM;
 		
-		console.log(this.DOM);
+		console.log(preDOM, this.DOM);
 	},
 	limpiarFormulario : function(){
 		this.DOM.form[0].reset(); 
