@@ -76,6 +76,9 @@ class Mensaje {
         require 'PHPMailer-master/src/PHPMailer.php';
         require 'PHPMailer-master/src/SMTP.php';
      
+        use PHPMailer\PHPMailer\PHPMailer;
+        use PHPMailer\PHPMailer\Exception;
+     
         switch($tipo){
             case "PRESELECCIONAR":
             return $this->enviarCorreoPreseleccionar();
