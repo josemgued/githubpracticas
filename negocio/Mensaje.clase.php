@@ -106,6 +106,7 @@ class Mensaje {
                     'Muchas gracias.<br>');
 
         $mail = new PHPMailer();
+        $mail->CharSet = 'UTF-8';
         $data = Funciones::enviarCorreo($mail, SMTP::DEBUG_OFF, PHPMailer::ENCRYPTION_STARTTLS, $this->asunto,$this->getMensajeArmado(),$this->empresa,trim($estudiante["correo"]));
 
         return ["rpt"=>true, "msj"=>"Mensaje enviado","data"=>$data];
@@ -124,7 +125,8 @@ class Mensaje {
                     'Muchas gracias por su tiempo.<br>';
         $this->setMensaje($mensaje);
  
-        $mail = new PHPMailer();
+        $mail = new PHPMailer(); 
+        $mail->CharSet = 'UTF-8';
         $data = Funciones::enviarCorreo($mail, SMTP::DEBUG_OFF, PHPMailer::ENCRYPTION_STARTTLS, $this->asunto,$this->getMensajeArmado(),$this->empresa,trim($estudiante["correo"]));
 
         return ["rpt"=>true, "msj"=>"Mensaje enviado","data"=>$data];
@@ -156,6 +158,7 @@ class Mensaje {
         $this->setMensaje($mensaje);
 
         $mail = new PHPMailer();
+        $mail->CharSet = 'UTF-8';
         $data = Funciones::enviarCorreo($mail, SMTP::DEBUG_OFF, PHPMailer::ENCRYPTION_STARTTLS, $this->asunto,$this->getMensajeArmado(),$this->empresa,trim($persona["correo"]));
 
         return ["rpt"=>true, "msj"=>"Mensaje enviado","data"=>$data];
