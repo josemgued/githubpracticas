@@ -68,6 +68,14 @@ class Mensaje {
     
     public function enviarCorreo($tipo){
         //require 'PHPMailer-master/PHPMailerAutoload.php';
+        ini_set('display_errors', 1);
+        ini_set('display_startup_errors', 1);
+        error_reporting(E_ALL);
+        
+        require 'PHPMailer-master/src/Exception.php';
+        require 'PHPMailer-master/src/PHPMailer.php';
+        require 'PHPMailer-master/src/SMTP.php';
+     
         switch($tipo){
             case "PRESELECCIONAR":
             return $this->enviarCorreoPreseleccionar();
