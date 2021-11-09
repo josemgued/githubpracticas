@@ -72,12 +72,13 @@ class Mensaje {
         ini_set('display_startup_errors', 1);
         error_reporting(E_ALL);
         
+        use PHPMailer\PHPMailer\PHPMailer;
+        use PHPMailer\PHPMailer\Exception;
+     
         require 'PHPMailer-master/src/Exception.php';
         require 'PHPMailer-master/src/PHPMailer.php';
         require 'PHPMailer-master/src/SMTP.php';
      
-        use PHPMailer\PHPMailer\PHPMailer;
-        use PHPMailer\PHPMailer\Exception;
      
         switch($tipo){
             case "PRESELECCIONAR":
