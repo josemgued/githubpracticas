@@ -408,7 +408,7 @@ class Funciones {
     public static function enviarCorreo($mail, $debug, $stmpSecure, $asunto,$cuerpo,$de,$para){    
         date_default_timezone_set('Etc/UTC');
         
-        var_dump($asunto, $cuepo, $de, $para);
+        var_dump($asunto, $cuerpo, $de, $para);
         $registros = [];
         try {
             $mail->isSMTP();
