@@ -71,14 +71,14 @@ class Mensaje {
 
         switch($tipo){
             case "PRESELECCIONAR":
-            $this->enviarCorreoPreseleccionar();
+            return $this->enviarCorreoPreseleccionar();
             break;
             case "ACEPTADO":
             case "RECHAZADO":
-            $this->enviarCorreoValidacion($tipo);            
+            return $this->enviarCorreoValidacion($tipo);            
             break;
             case "CONFIRMAR_CUENTA";
-            $this->enviarCorreoConfirmacion();     
+            return $this->enviarCorreoConfirmacion();     
             break;
         }
 
@@ -97,9 +97,9 @@ class Mensaje {
                     'No estaremos comunicando vía celular con Ud. lo más pronto posible para continuar con el proceso de selección.<br><br>'.
                     'Muchas gracias.<br>');
 
-        Funciones::enviarCorreo($this->asunto,$this->getMensajeArmado(),$this->empresa,trim($estudiante["correo"]));
+        $data = Funciones::enviarCorreo($this->asunto,$this->getMensajeArmado(),$this->empresa,trim($estudiante["correo"]));
 
-        return ["rpt"=>true, "msj"=>"Mensaje enviado"];
+        return ["rpt"=>true, "msj"=>"Mensaje enviado","data"=>$data];
         
     }
 
@@ -115,9 +115,9 @@ class Mensaje {
                     'Muchas gracias por su tiempo.<br>';
         $this->setMensaje($mensaje);
 
-        Funciones::enviarCorreo($this->asunto,$this->getMensajeArmado(),$this->empresa,trim($estudiante["correo"]));
+        $data = Funciones::enviarCorreo($this->asunto,$this->getMensajeArmado(),$this->empresa,trim($estudiante["correo"]));
 
-        return ["rpt"=>true, "msj"=>"Mensaje enviado"];
+        return ["rpt"=>true, "msj"=>"Mensaje enviado","data"=>$data];
     }   
 
     private function enviarCorreoConfirmacion(){
