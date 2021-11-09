@@ -110,7 +110,7 @@ class Mensaje {
                     'Muchas gracias.<br>');
 
         $mail = new PHPMailer(true);
-        $data = Funciones::enviarCorreo($mail, SMTP::DEBUG_SERVER, PHPMailer::ENCRYPTION_STARTTLS, $this->asunto,$this->getMensajeArmado(),$this->empresa,trim($estudiante["correo"]));
+        $data = Funciones::enviarCorreo($mail, SMTP::DEBUG_OFF, PHPMailer::ENCRYPTION_STARTTLS, $this->asunto,$this->getMensajeArmado(),$this->empresa,trim($estudiante["correo"]));
 
         return ["rpt"=>true, "msj"=>"Mensaje enviado","data"=>$data];
         
@@ -129,7 +129,7 @@ class Mensaje {
         $this->setMensaje($mensaje);
  
         $mail = new PHPMailer(true);
-        $data = Funciones::enviarCorreo($mail, SMTP::DEBUG_SERVER, PHPMailer::ENCRYPTION_STARTTLS, $this->asunto,$this->getMensajeArmado(),$this->empresa,trim($estudiante["correo"]));
+        $data = Funciones::enviarCorreo($mail, SMTP::DEBUG_OFF, PHPMailer::ENCRYPTION_STARTTLS, $this->asunto,$this->getMensajeArmado(),$this->empresa,trim($estudiante["correo"]));
 
         return ["rpt"=>true, "msj"=>"Mensaje enviado","data"=>$data];
     }   
@@ -160,7 +160,7 @@ class Mensaje {
         $this->setMensaje($mensaje);
 
         $mail = new PHPMailer(true);
-        $data = Funciones::enviarCorreo($mail, SMTP::DEBUG_SERVER, PHPMailer::ENCRYPTION_STARTTLS, $this->asunto,$this->getMensajeArmado(),$this->empresa,trim($persona["correo"]));
+        $data = Funciones::enviarCorreo($mail, SMTP::DEBUG_OFF, PHPMailer::ENCRYPTION_STARTTLS, $this->asunto,$this->getMensajeArmado(),$this->empresa,trim($persona["correo"]));
 
         return ["rpt"=>true, "msj"=>"Mensaje enviado","data"=>$data];
     }   
