@@ -509,7 +509,7 @@ pages["estudiante-cuenta-nueva"] = {
 	},
 	setDOM: function(contenedor){
 		var $contenedor = $$(contenedor),
-			preDOM = $contenedor.find("form,#txtCarrera_es,#txtUniversidad_es, #txtPassword_es,#txtRepetirPassword_es, #spnNuevaCuentaError_es, #btnGuardar_es"),
+			preDOM = $contenedor.find("form,#txtCarrera_es,#txtUniversidad_es, #txtPassword_es,#txtRepetirPassword_es, #spnNuevaCuentaError_es, #btnGuardarNuevaCuenta_es"),
 			DOM = {
 			form: preDOM.eq(0),
 			txtCarrera : preDOM.eq(1),
@@ -521,7 +521,7 @@ pages["estudiante-cuenta-nueva"] = {
 		};		
 		this.DOM = DOM;
 		
-		console.log(preDOM, this.DOM);
+		console.log(preDOM);
 	},
 	limpiarFormulario : function(){
 		this.DOM.form[0].reset(); 
