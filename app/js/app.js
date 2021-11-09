@@ -509,7 +509,7 @@ pages["estudiante-cuenta-nueva"] = {
 	},
 	setDOM: function(contenedor){
 		var $contenedor = $$(contenedor),
-			preDOM = $contenedor.find("form,#txtCarrera_es,#txtUniversidad_es, #txtPassword_es,#txtRepetirPassword_es, #btnGuardar_es,#spnNuevaCuentaError_es"),
+			preDOM = $contenedor.find("form,#txtCarrera_es,#txtUniversidad_es, #txtPassword_es,#txtRepetirPassword_es, #spnNuevaCuentaError_es, #btnGuardar_es"),
 			DOM = {
 			form: preDOM.eq(0),
 			txtCarrera : preDOM.eq(1),
@@ -520,7 +520,6 @@ pages["estudiante-cuenta-nueva"] = {
 			spnNuevaCuentaError : preDOM.eq(6)
 		};		
 		this.DOM = DOM;
-		
 		
 		console.log(this.DOM);
 	},
