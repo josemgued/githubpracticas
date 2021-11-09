@@ -440,7 +440,8 @@ class Funciones {
         $mail->Username = "josemgued@gmail.com";
 
         //Password to use for SMTP authentication
-        $mail->Password = "josing83";
+        //$mail->Password = "josing83";
+        $mail->Password = "Compuged161183$$$";
 
         //Set who the message is to be sent from
         $mail->setFrom($de, 'APPPRACTICAR');
