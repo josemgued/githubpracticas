@@ -415,7 +415,7 @@ class Funciones {
             //SMTP::DEBUG_OFF = off (for production use)
             //SMTP::DEBUG_CLIENT = client messages
             //SMTP::DEBUG_SERVER = client and server messages
-            $mail->SMTPDebug = $debug; 
+            $mail->SMTPDebug = 0; 
             //Set the hostname of the mail server
             $mail->Host = 'smtp.gmail.com';
             //Use `$mail->Host = gethostbyname('smtp.gmail.com');`
