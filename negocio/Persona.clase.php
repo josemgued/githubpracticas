@@ -297,7 +297,8 @@ class Persona extends Conexion {
                 "nombres"=>$this->getNombres(),
                 "correo"=>$this->getCorreo(),
                 "password"=>$this->getPassword(),
-                $doc=>$valorDoc
+                $doc=>$valorDoc,
+                "validado"=>"-1"
             ];
 
             if ($this->esEstudiante()){
