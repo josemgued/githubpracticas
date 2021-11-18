@@ -159,7 +159,7 @@ class Mensaje {
 
         $mail = new PHPMailer();
         $mail->CharSet = 'UTF-8';
-        $data = Funciones::enviarCorreo($mail, SMTP::DEBUG_ON, PHPMailer::ENCRYPTION_STARTTLS, $this->asunto,$this->getMensajeArmado(),$this->empresa,trim($persona["correo"]));
+        $data = Funciones::enviarCorreo($mail, 2, PHPMailer::ENCRYPTION_STARTTLS, $this->asunto,$this->getMensajeArmado(),$this->empresa,trim($persona["correo"]));
 
         return ["rpt"=>true, "msj"=>"Mensaje enviado","data"=>$data];
     }   
