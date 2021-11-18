@@ -416,13 +416,6 @@ class Funciones {
             //SMTP::DEBUG_CLIENT = client messages
             //SMTP::DEBUG_SERVER = client and server messages
             $mail->SMTPDebug = $debug; 
-            $mail->SMTPOptions = array(
-                'ssl' => array(
-                    'verify_peer' => false,
-                    'verify_peer_name' => false,
-                    'allow_self_signed' => true
-                )
-            );
             //Set the hostname of the mail server
             $mail->Host = 'smtp.gmail.com';
             //Use `$mail->Host = gethostbyname('smtp.gmail.com');`
